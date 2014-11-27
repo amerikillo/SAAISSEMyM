@@ -199,7 +199,7 @@
                                 <input type="clave" class="form-control" id="clave" name="clave" placeholder="SICCAL" onKeyPress="return tabular(event, this)">
                             </div>
                             <div class="col-sm-2">
-                                <button class="btn btn-block btn-primary" type = "submit" value = "clave" name = "accion" >SICAAL</button>
+                                <button class="btn btn-block btn-primary" type = "submit" value = "clave" name = "accion" >SICCAL</button>
                             </div>
                         </div>
                         <br/>
