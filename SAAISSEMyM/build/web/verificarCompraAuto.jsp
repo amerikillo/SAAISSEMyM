@@ -143,7 +143,8 @@
                             <tr>
                                 <td>Remisión</td>
                                 <td>Código de Barras</td>
-                                <td>Clave</td>
+                                <td>SICCAL</td>
+                                <td>SAP</td>
                                 <td>Descripción</td>                       
                                 <td>Lote</td>
                                 <td>Caducidad</td>                        
@@ -158,7 +159,7 @@
                                 int banBtn = 0;
                                 try {
                                     con.conectar();
-                                    ResultSet rset = con.consulta("SELECT C.F_Cb,C.F_ClaPro,M.F_DesPro,C.F_Lote,C.F_FecCad,C.F_Pz,F_IdCom, C.F_Costo, C.F_ImpTo, C.F_ComTot, C.F_FolRemi, C.F_Obser FROM tb_compratemp C INNER JOIN tb_medica M ON C.F_ClaPro=M.F_ClaPro WHERE F_OrdCom='" + vOrden + "' and F_FolRemi = '" + vRemi + "'  and F_Estado = '2'");
+                                    ResultSet rset = con.consulta("SELECT C.F_Cb,C.F_ClaPro,M.F_DesPro,C.F_Lote,C.F_FecCad,C.F_Pz,F_IdCom, C.F_Costo, C.F_ImpTo, C.F_ComTot, C.F_FolRemi, C.F_Obser, M.F_ClaSap FROM tb_compratemp C INNER JOIN tb_medica M ON C.F_ClaPro=M.F_ClaPro WHERE F_OrdCom='" + vOrden + "' and F_FolRemi = '" + vRemi + "'  and F_Estado = '2'");
                                     while (rset.next()) {
                                         banBtn = 1;
                             %>
@@ -166,6 +167,7 @@
                                 <td><%=rset.getString("C.F_FolRemi")%></td>
                                 <td><%=rset.getString(1)%></td>
                                 <td><%=rset.getString(2)%></td>
+                                <td><%=rset.getString("F_ClaSap")%></td>
                                 <td><%=rset.getString(3)%></td>
                                 <td><%=rset.getString(4)%></td>
                                 <td><%=df3.format(df2.parse(rset.getString(5)))%></td>
@@ -191,7 +193,7 @@
 
                             %>
                             <tr>
-                                <td colspan="12">
+                                <td colspan="13">
 
                                 </td>
                             </tr>

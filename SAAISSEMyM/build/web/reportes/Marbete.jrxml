@@ -45,7 +45,7 @@
 			<textField isStretchWithOverflow="true">
 				<reportElement uuid="5ea55e41-044f-472e-97ac-fca7391c0758" x="0" y="65" width="752" height="60"/>
 				<textElement textAlignment="Center">
-					<font fontName="SansSerif" size="100"/>
+					<font fontName="SansSerif" size="80"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{F_ClaPro}]]></textFieldExpression>
 			</textField>

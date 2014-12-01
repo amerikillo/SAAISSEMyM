@@ -209,6 +209,8 @@ $('#buscarDescrip').keyup(function() {
     };
 });
 
+
+
 $('#F_ClaUbi').keyup(function() {
     var descripcion = $('#F_ClaUbi').val();
     $('#F_ClaUbi').autocomplete({

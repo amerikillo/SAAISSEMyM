@@ -162,7 +162,7 @@
         <div class="container">
             <h1>SIALSS</h1>
             <h4>Módulo - Sistema de Administración de Almacenes (SAA)</h4>
-            
+
             <%@include file="../jspf/menuPrincipal.jspf" %>
             <form action="compraAuto3.jsp" method="post">
                 <div class="row">
@@ -258,27 +258,28 @@
                                 <h4 class="col-sm-12">Fecha y Hora de Entrega: <%=df3.format(df2.parse(rset.getString(2)))%> <%=rset.getString(3)%></h4>
                             </div>
                             <div class="row">
-                                <h4 class="col-sm-1">Clave:</h4>
+                                <h4 class="col-sm-1">SICCAL:</h4>
                                 <div class="col-sm-2">
-                                    <select class="form-control" name="selectClave" id="selectClave">
+                                    <input  class="form-control" name="selectClave" id="selectClave"/>
+                                    <!--select class="form-control" name="selectClave" id="selectClave">
                                         <option>-Seleccione-</option>
-                                        <%
-                                            try {
-                                                con.conectar();
-                                                ResultSet rset2 = con.consulta("select F_Clave from tb_pedidoisem where F_NoCompra = '" + noCompra + "' and F_Recibido = '0' ");
-                                                while (rset2.next()) {
-                                                    out.print("<option>" + rset2.getString(1) + "</option>");
-                                                    totalClaves++;
-                                                }
-                                                con.cierraConexion();
-                                            } catch (Exception e) {
-
+                                    <%
+                                        try {
+                                            con.conectar();
+                                            ResultSet rset2 = con.consulta("select F_Clave from tb_pedidoisem where F_NoCompra = '" + noCompra + "' and F_Recibido = '0' ");
+                                            while (rset2.next()) {
+                                                out.print("<option>" + rset2.getString(1) + "</option>");
+                                                totalClaves++;
                                             }
-                                        %>
-                                    </select>
+                                            con.cierraConexion();
+                                        } catch (Exception e) {
+
+                                        }
+                                    %>
+                                </select-->
                                 </div>
                                 <div class="col-sm-1">
-                                    <button class="btn btn-primary btn-block" name="accion" value="seleccionaClave">Clave</button>
+                                    <button class="btn btn-primary btn-block" name="accion" value="seleccionaClave">SICCAL</button>
                                 </div>
                                 <div class="col-sm-6">
                                     <%
@@ -294,7 +295,7 @@
                                         }
                                     %>
 
-                                    <h4>Claves ingresadas <%=clavesCapturadas%>/<%=totalClaves%></h4>
+                                    <h4>Insumos Ingresados <%=clavesCapturadas%>/<%=totalClaves%></h4>
                                 </div>
                                 <div class="col-sm-2">
                                     <a href="#" class="btn btn-danger btn-block" data-toggle="modal" data-target="#Rechazar">Rechazar</a>
@@ -316,7 +317,7 @@
                                     while (rset2.next()) {
 
                             %>
-                            <h4 class="bg-primary" style="padding: 5px">CLAVE | <%=rset2.getString(1)%> <%=rset2.getString(2)%></h4>
+                            <h4 class="bg-primary" style="padding: 5px">SICCAL | <%=rset2.getString(1)%> <%=rset2.getString(2)%></h4>
 
                             <strong>Cantidad a Recibir</strong>
                             <input type="text" value="<%=formatter.format(rset2.getInt(5))%>" class="form-control" name="cantRecibir" id="cantRecibir" onclick="" readonly=""  onkeypress="return tabular(event, this)"/>
@@ -374,7 +375,7 @@
                                 }
                                 if (contadorLotes > 1) {
                                     //Mas de 1 lote
-                            %>
+%>
                             Lote
                             <input type="text" value="<%=Lote%>" class="form-control" name="lot" id="lot" onkeypress="return tabular(event, this)"/>
                             <select class="form-control" name="list_lote" id="list_lote"  onchange="cambiaLoteCadu(this);" onkeypress="return tabular(event, this)">
@@ -631,7 +632,8 @@
                 <tr>
                     <td>Remisión</td>
                     <td><a name="ancla"></a>Código de Barras</td>
-                    <td>Clave</td>
+                    <td>SICCAL</td>
+                    <td>SAP</td>
                     <td>Descripción</td>                       
                     <td>Lote</td>
                     <td>Caducidad</td>                        
@@ -646,7 +648,7 @@
                     String obser = "";
                     try {
                         con.conectar();
-                        ResultSet rset = con.consulta("SELECT C.F_Cb,C.F_ClaPro,M.F_DesPro,C.F_Lote,C.F_FecCad,C.F_Pz,F_IdCom, C.F_Costo, C.F_ImpTo, C.F_ComTot, C.F_FolRemi FROM tb_compratemp C INNER JOIN tb_medica M ON C.F_ClaPro=M.F_ClaPro WHERE F_OrdCom='" + noCompra + "' and F_Estado = '1'");
+                        ResultSet rset = con.consulta("SELECT C.F_Cb,C.F_ClaPro,M.F_DesPro,C.F_Lote,C.F_FecCad,C.F_Pz,F_IdCom, C.F_Costo, C.F_ImpTo, C.F_ComTot, C.F_FolRemi, m.F_ClaSap FROM tb_compratemp C INNER JOIN tb_medica M ON C.F_ClaPro=M.F_ClaPro WHERE F_OrdCom='" + noCompra + "' and F_Estado = '1'");
                         while (rset.next()) {
                             banCompra = 1;
                 %>
@@ -654,6 +656,7 @@
                     <td><%=rset.getString("C.F_FolRemi")%></td>
                     <td><%=rset.getString(1)%></td>
                     <td><%=rset.getString(2)%></td>
+                    <td><%=rset.getString("F_ClaSap")%></td>
                     <td><%=rset.getString(3)%></td>
                     <td><%=rset.getString(4)%></td>
                     <td><%=df3.format(df2.parse(rset.getString(5)))%></td>
@@ -866,7 +869,7 @@
     <!--
     /Modal
     -->
-        <%@include file="../jspf/piePagina.jspf" %>
+    <%@include file="../jspf/piePagina.jspf" %>
 </body>
 
 
@@ -878,6 +881,7 @@
 <script src="../js/bootstrap.js"></script>
 <script src="../js/jquery-ui-1.10.3.custom.js"></script>
 <script src="../js/bootstrap-datepicker.js"></script>
+<script src="../js/funcIngresos.js"></script>
 <script type="text/javascript">
                             /*$('#todosChk').click(function(event) {
                              alert('hola');

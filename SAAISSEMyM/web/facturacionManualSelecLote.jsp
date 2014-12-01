@@ -119,7 +119,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-1">
-                                <h4>Clave:</h4>
+                                <h4>SICCAL:</h4>
                             </div>
                             <div class="col-sm-2">
                                 <input class="form-control" readonly="" value="<%=ClaPro%>"/>
@@ -152,7 +152,8 @@
             </form>
             <table class="table table-condensed table-striped table-bordered table-responsive">
                 <tr>
-                    <td>Clave</td>
+                    <td>SICCAL</td>
+                    <td>SAP</td>
                     <td>Lote</td>
                     <td>Caducidad</td>
                     <td>Ubicación</td>
@@ -163,7 +164,7 @@
                 <%
                     try {
                         con.conectar();
-                        ResultSet rset = con.consulta("select F_ClaPro, F_ClaLot, DATE_FORMAT(F_FecCad, '%d/%m/%Y'), F_Ubica, F_ExiLot, F_IdLote, F_FolLot, F_DesMar from tb_lote l, tb_marca m where l.F_ClaMar = m.F_ClaMar and  F_ClaPro = '" + ClaPro + "' and F_ExiLot!=0 order by F_FecCad asc  ");
+                        ResultSet rset = con.consulta("select l.F_ClaPro, l.F_ClaLot, DATE_FORMAT(l.F_FecCad, '%d/%m/%Y'), l.F_Ubica, l.F_ExiLot, l.F_IdLote, l.F_FolLot, m.F_DesMar, me.F_ClaSap from tb_lote l, tb_marca m, tb_medica me where me.F_ClaPro = l.F_ClaPro and l.F_ClaMar = m.F_ClaMar and l.F_ClaPro = '" + ClaPro + "' and F_ExiLot!=0 order by F_FecCad asc  ");
                         while (rset.next()) {
                             int cant = 0, cantTemp = 0;
                             int cantLot = rset.getInt(5);
@@ -176,6 +177,7 @@
                 %>
                 <tr>
                     <td><%=rset.getString(1)%></td>
+                    <td><%=rset.getString("F_ClaSap")%></td>
                     <td><%=rset.getString(2)%></td>
                     <td><%=rset.getString(3)%></td>
                     <td><%=rset.getString(4)%></td>

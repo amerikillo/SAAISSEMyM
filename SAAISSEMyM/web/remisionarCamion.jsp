@@ -139,7 +139,7 @@
                                     <td></td>
                                     <td>ID</td>
                                     <td>CB</td>
-                                    <td>Clave</td>
+                                    <td>SICCAL</td>
                                     <td>Lote</td>
                                     <td>Caducidad</td>
                                     <td>Ubicación</td>

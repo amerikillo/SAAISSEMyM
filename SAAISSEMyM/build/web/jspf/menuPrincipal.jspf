@@ -27,22 +27,22 @@
                         %>
 
                         <li><a href="/SAAISSEMyM/captura.jsp">Entrada Manual</a></li>
-                        <!--li><a href="compraAuto2.jsp">Entrada Automática OC ISEM</a></li>
+                        <li><a href="/SAAISSEMyM/compraAuto2.jsp">Entrada Automática OC</a></li>
                         <li class="divider"></li>
-                        <li><a href="hh/compraAuto3.jsp">HANDHELD | Entrada Automática OC ISEM</a></li>
+                        <li><a href="hh/compraAuto3.jsp">HANDHELD | Entrada Automática OC</a></li>
                         <li class="divider"></li-->
                         <%
                             }
                             if (tipo.equals("2") || tipo.equals("3") || tipo.equals("5")) {
                         %>
-                        <li><a href="verificarCompraAuto.jsp">Verificar Remisión</a></li>
+                        <li><a href="/SAAISSEMyM/verificarCompraAuto.jsp">Verificar Remisión</a></li>
                             <%
                                 }
                             %>
                         <li><a href="#" onclick="window.open('/SAAISSEMyM/reimpresion.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Reimpresión de Remisiones</a></li>
-                        <!--li><a href="#"  onclick="window.open('ordenesCompra.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Órdenes de Compras</a></li-->
+                        <li><a href="#"  onclick="window.open('/SAAISSEMyM/ordenesCompra.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Órdenes de Compras</a></li>
                         <li><a href="#"  onclick="window.open('/SAAISSEMyM/kardexClave.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Kardex Claves</a></li>
-                        <li><a href="#"  onclick="window.open('/SAAISSEMyM/Ubicaciones/Consultas.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Ubicaciones</a></li>
+                        <li><a href="#"  onclick="window.open('/SAAISSEMyM/hh/ubicacionesConsultas.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Ubicaciones</a></li>
                         <!--li><a href="#"  onclick="window.open('/SAAISSEMyM/creaMarbetes.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Generar Marbetes</a></li-->
 
                         <%

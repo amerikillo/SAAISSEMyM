@@ -46,7 +46,7 @@
 
     int totalClaves = 0, clavesCapturadas = 0;
     String fecha = "", noCompra = "", Proveedor = "", Fecha = "";
-                        String nomProvee="";
+    String nomProvee = "";
     try {
         fecha = request.getParameter("Fecha");
     } catch (Exception e) {
@@ -163,142 +163,8 @@
         <div class="container">
             <h1>SIALSS</h1>
             <h4>Módulo - Sistema de Administración de Almacenes (SAA)</h4>
-            <div class="navbar navbar-default">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span clss="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="main_menu.jsp">Inicio</a>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Entradas<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <%
-                                        if (tipo.equals("2") || tipo.equals("3") || tipo.equals("1")) {
-                                    %>
-
-                                    <li><a href="captura.jsp">Entrada Manual</a></li>
-                                    <li><a href="compraAuto2.jsp">Entrada Automática OC ISEM</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="hh/compraAuto3.jsp">HANDHELD | Entrada Automática OC ISEM</a></li>
-                                    <li class="divider"></li>
-                                        <%
-                                            }
-                                            if (tipo.equals("2") || tipo.equals("3") || tipo.equals("5")) {
-                                        %>
-                                    <li><a href="verificarCompraAuto.jsp">Verificar OC</a></li>
-                                        <%
-                                            }
-                                        %>
-                                    <li><a href="#" onclick="window.open('reimpresion.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Reimpresión de Compras</a></li>
-                                    <li><a href="#"  onclick="window.open('ordenesCompra.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Órdenes de Compras</a></li>
-                                    <li><a href="#"  onclick="window.open('kardexClave.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Kardex Claves</a></li>
-                                    <li><a href="#"  onclick="window.open('Ubicaciones/Consultas.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Ubicaciones</a></li>
-                                    <li><a href="#"  onclick="window.open('creaMarbetes.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Generar Marbetes</a></li>
-                                   
-                                        <%
-                                            if (tipo.equals("5") || tipo.equals("3")) {
-                                        %>
-                                    <li class="divider"></li>
-                                    <li><a href="hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>
-                                    <li class="divider"></li>
-                                        <%
-                                            }
-                                        %>
-                                        <%
-                                            if (usua.equals("oscar")) {
-                                        %>
-                                    <li class="divider"></li>
-                                    <li><a href="#"  onclick="window.open('devolucionesInsumo.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Cambio Físico</a></li>
-                                    <li class="divider"></li>
-                                        <%
-                                            }
-                                        %>
-                                    <li><a href="#"  onclick="window.open('Ubicaciones/index_Marbete.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Marbete de Salida</a></li>
-                                    <li><a href="#"  onclick="window.open('Ubicaciones/index_Marbete_resto.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Marbete de Resto</a></li>
-                                    <!--li><a href="#"  onclick="window.open('verDevolucionesEntrada.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Imprimir Devoluciones</a></li>
-                                    <li><a href="#"  onclick="window.open('devolucionesInsumo.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Devolver</a></li-->
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Facturación<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <%
-                                        if (tipo.equals("7") || tipo.equals("3")) {
-                                    %>
-                                    <li><a href="requerimiento.jsp">Carga de Requerimiento</a></li>
-                                    <li><a href="factura.jsp">Facturación Automática</a></li>
-                                        <%
-                                            }
-                                        %>
-                                        <%
-                                           if (tipo.equals("5") || tipo.equals("3") || tipo.equals("7") || tipo.equals("2")) {
-                                        %>
-                                    <li><a href="validacionSurtido.jsp">Validación Surtido</a></li>
-                                    <li><a href="validacionAuditores.jsp">Validación Auditores</a></li>
-                                        <%
-                                            }
-                                        %>
-                                        <%
-                                            if (tipo.equals("7")) {
-                                        %>
-                                    <li><a href="remisionarCamion.jsp">Generar Remisiones</a></li>
-                                    <li><a href="facturacionManual.jsp">Facturación Manual</a></li>
-                                        <%
-                                            }
-                                        %>
-                                    <li><a href="reimp_factura.jsp">Administrar Remisiones</a></li>
-                                    <li><a href="reimpConcentrado.jsp">Reimpresión Concentrados Globales</a></li>
-                                    <li><a href="comparativoGlobal.jsp">Comparativo Global</a></li>
-
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inventario<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#"  onclick="window.open('Ubicaciones/Inventario.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Inventario</a></li>
-                                        <%
-                                           if (tipo.equals("5") || tipo.equals("3") || tipo.equals("7") || tipo.equals("2")) {
-                                        %>
-                                    <li><a href="#"  onclick="window.open('movimientosUsuarioInventario.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Movimientos por Usuario</a></li>
-                                    <li><a href="#"  onclick="window.open('semaforo.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Semaforización</a></li>
-                                        <%
-                                            }
-                                        %>
-                                    <li><a href="#"  onclick="window.open('invenCiclico/nuevoInventario.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Inventario Ciclico</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catálogos<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#" onclick="window.open('medicamento.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Catálogo de Medicamento</a></li>
-                                    <li><a href="#" onclick="window.open('catalogo.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Catálogo de Proveedores</a></li>
-                                    <li><a href="#" onclick="window.open('marcas.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Catálogo de Marcas</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#" onclick="window.open('Entrega.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Fecha de Recibo en CEDIS</a></li> 
-                                    <li><a href="#" onclick="window.open('historialOC.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Historial OC</a></li>
-                                    <li><a href="#" onclick="window.open('ReporteF.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Reporte por Fecha Proveedor</a></li>
-
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#"><span class="glyphicon glyphicon-user"></span> <%=usua%></a></li>
-                            <li class="active"><a href="index.jsp"><span class="glyphicon glyphicon-log-out"></span></a></li>
-                        </ul>
-                    </div><!--/.nav-collapse -->
-                </div>
-            </div>
+            
+            <%@include file="../jspf/menuPrincipal.jspf" %>
             <form action="compraAuto2.jsp" method="post">
                 <div class="row">
                     <label class="col-sm-2 text-right">
@@ -376,7 +242,7 @@
                         con.conectar();
                         ResultSet rset = con.consulta("select i.F_NoCompra, i.F_FecSur, i.F_HorSur, p.F_NomPro, p.F_ClaProve from tb_pedidoisem i, tb_proveedor p where i.F_Provee = p.F_ClaProve and F_StsPed = '1' and F_NoCompra = '" + noCompra + "' and F_recibido='0' group by F_NoCompra");
                         while (rset.next()) {
-                            nomProvee=rset.getString("p.F_NomPro");
+                            nomProvee = rset.getString("p.F_NomPro");
                 %>
                 <div class="row">
                     <div class="panel panel-default">
@@ -403,27 +269,28 @@
                                 <h4 class="col-sm-12">Fecha y Hora de Entrega: <%=df3.format(df2.parse(rset.getString(2)))%> <%=rset.getString(3)%></h4>
                             </div>
                             <div class="row">
-                                <h4 class="col-sm-1">Clave:</h4>
+                                <h4 class="col-sm-1">SICCAL</h4>
                                 <div class="col-sm-2">
-                                    <select class="form-control" name="selectClave" id="selectClave">
+                                    <input  class="form-control" name="selectClave" id="selectClave"/>
+                                    <!--select class="form-control" name="selectClave" id="selectClave">
                                         <option>-Seleccione-</option>
-                                        <%
-                                            try {
-                                                con.conectar();
-                                                ResultSet rset2 = con.consulta("select F_Clave from tb_pedidoisem where F_NoCompra = '" + noCompra + "' and F_Recibido = '0' ");
-                                                while (rset2.next()) {
-                                                    out.print("<option>" + rset2.getString(1) + "</option>");
-                                                    totalClaves++;
-                                                }
-                                                con.cierraConexion();
-                                            } catch (Exception e) {
-
+                                    <%
+                                        try {
+                                            con.conectar();
+                                            ResultSet rset2 = con.consulta("select F_Clave from tb_pedidoisem where F_NoCompra = '" + noCompra + "' and F_Recibido = '0' ");
+                                            while (rset2.next()) {
+                                                out.print("<option>" + rset2.getString(1) + "</option>");
+                                                totalClaves++;
                                             }
-                                        %>
-                                    </select>
+                                            con.cierraConexion();
+                                        } catch (Exception e) {
+
+                                        }
+                                    %>
+                                </select-->
                                 </div>
                                 <div class="col-sm-1">
-                                    <button class="btn btn-primary btn-block" name="accion" value="seleccionaClave">Clave</button>
+                                    <button class="btn btn-primary btn-block" name="accion" value="seleccionaClave">SICCAL</button>
                                 </div>
                                 <div class="col-sm-6">
                                     <%
@@ -439,7 +306,7 @@
                                         }
                                     %>
 
-                                    <h4>Claves ingresadas <%=clavesCapturadas%>/<%=totalClaves%></h4>
+                                    <h4>Insumos Ingresados <%=clavesCapturadas%>/<%=totalClaves%></h4>
                                 </div>
                                 <div class="col-sm-2">
                                     <a href="#" class="btn btn-danger btn-block" data-toggle="modal" data-target="#Rechazar">Rechazar</a>
@@ -457,7 +324,7 @@
                                         rset2.last();
                                         numRenglones = rset2.getRow() - 1;
                                     }
-                                    rset2 = con.consulta("select s.F_Clave, m.F_DesPro, s.F_Lote, DATE_FORMAT(F_Cadu, '%d/%m/%Y'), s.F_Cant, F_IdIsem, F_Obser from tb_pedidoisem s, tb_medica m where s.F_Clave = m.F_ClaPro and F_NoCompra = '" + rset.getString(1) + "' and F_Clave = '" + sesion.getAttribute("claveSeleccionada") + "' ");
+                                    rset2 = con.consulta("select s.F_Clave, m.F_DesPro, s.F_Lote, DATE_FORMAT(F_Cadu, '%d/%m/%Y'), s.F_Cant, F_IdIsem, F_Obser, m.F_ClaSap from tb_pedidoisem s, tb_medica m where s.F_Clave = m.F_ClaPro and F_NoCompra = '" + rset.getString(1) + "' and F_Clave = '" + sesion.getAttribute("claveSeleccionada") + "' ");
                                     while (rset2.next()) {
 
                             %>
@@ -465,7 +332,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered table-condensed table-striped">
                                     <tr>
-                                        <td><strong>Clave</strong></td>
+                                        <td><strong>SICCAL</strong></td>
                                         <td><strong>Descripción</strong></td>
                                         <td><strong>Cod Bar</strong></td>
                                         <td><strong>Lote</strong></td>
@@ -476,7 +343,10 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><input type="text" value="<%=rset2.getString(1)%>" class="form-control" name="ClaPro" id="ClaPro" onclick="" readonly=""  onkeypress="return tabular(event, this)"/></td>
+                                        <td>
+                                            <input type="text" value="<%=rset2.getString(1)%>" class="form-control" name="ClaPro" id="ClaPro" onclick="" readonly=""  onkeypress="return tabular(event, this)"/>
+                                            <input type="text" value="SAP: <%=rset2.getString("F_ClaSap")%>" class="form-control" readonly=""/>
+                                        </td>
                                         <td><%=rset2.getString(2)%></td>
                                         <td>
                                             <input type="text" value="<%=CodBar%>" class="form-control" name="codbar" id="codbar" onclick="" onkeypress="return checkKey(event, this);" />
@@ -507,7 +377,7 @@
                                             }
                                             if (contadorLotes > 1) {
                                                 //Mas de 1 lote
-                                        %>
+%>
                                         <td>
                                             <input type="text" value="<%=Lote%>" class="form-control" name="lot" id="lot" onkeypress="return tabular(event, this)"/>
                                             <select class="form-control" name="list_lote" id="list_lote"  onchange="cambiaLoteCadu(this);" onkeypress="return tabular(event, this)">
@@ -653,7 +523,7 @@
                                                             }
                                                         %>
                                                         <option disabled="">---------------</option>
-                                                        
+
                                                         <%
                                                             try {
                                                                 con.conectar();
@@ -818,7 +688,8 @@
                     <tr>
                         <td>Remisión</td>
                         <td><a name="ancla"></a>Código de Barras</td>
-                        <td>Clave</td>
+                        <td>SICCAL</td>
+                        <td>SAP</td>
                         <td>Descripción</td>                       
                         <td>Lote</td>
                         <td>Caducidad</td>                        
@@ -833,7 +704,7 @@
                         String obser = "";
                         try {
                             con.conectar();
-                            ResultSet rset = con.consulta("SELECT C.F_Cb,C.F_ClaPro,M.F_DesPro,C.F_Lote,C.F_FecCad,C.F_Pz,F_IdCom, C.F_Costo, C.F_ImpTo, C.F_ComTot, C.F_FolRemi FROM tb_compratemp C INNER JOIN tb_medica M ON C.F_ClaPro=M.F_ClaPro WHERE F_OrdCom='" + noCompra + "' and F_Estado = '1'");
+                            ResultSet rset = con.consulta("SELECT C.F_Cb,C.F_ClaPro,M.F_DesPro,C.F_Lote,C.F_FecCad,C.F_Pz,F_IdCom, C.F_Costo, C.F_ImpTo, C.F_ComTot, C.F_FolRemi, M.F_ClaSap FROM tb_compratemp C INNER JOIN tb_medica M ON C.F_ClaPro=M.F_ClaPro WHERE F_OrdCom='" + noCompra + "' and F_Estado = '1'");
                             while (rset.next()) {
                                 banCompra = 1;
                     %>
@@ -841,10 +712,11 @@
                         <td><%=rset.getString("C.F_FolRemi")%></td>
                         <td><%=rset.getString(1)%></td>
                         <td><%=rset.getString(2)%></td>
+                        <td><%=rset.getString("F_ClaSap")%></td>
                         <td><%=rset.getString(3)%></td>
                         <td><%=rset.getString(4)%></td>
                         <td><%=df3.format(df2.parse(rset.getString(5)))%></td>
-                        <td><%=formatter.format(rset.getDouble(6))%></td>           
+                        <td class="text-right"><%=formatter.format(rset.getDouble(6))%></td>           
                         <td><%=formatterDecimal.format(rset.getDouble("C.F_Costo"))%></td>
                         <td><%=formatterDecimal.format(rset.getDouble("C.F_ImpTo"))%></td>          
                         <td><%=formatterDecimal.format(rset.getDouble("C.F_ComTot"))%></td>              
@@ -870,7 +742,7 @@
                     %>
                     <tr>
 
-                        <td colspan="11">
+                        <td colspan="12">
                             <div class="col-lg-3 col-lg-offset-6">
                                 <form action="nuevoAutomaticaLotes" method="post">
                                     <input name="fol_gnkl" type="text" style="" class="hidden" value="<%=noCompra%>" />
@@ -1101,6 +973,7 @@
     <script src="js/bootstrap.js"></script>
     <script src="js/jquery-ui-1.10.3.custom.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/funcIngresos.js"></script>
     <script type="text/javascript">
                                 /*$('#todosChk').click(function(event) {
                                  alert('hola');

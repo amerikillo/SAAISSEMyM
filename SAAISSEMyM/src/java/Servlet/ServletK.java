@@ -603,7 +603,7 @@ public class ServletK extends HttpServlet {
                 case 13:
                     String usuariomodifica2 = (String) Session.getAttribute("nombre");
                     System.out.println(usuariomodifica2);
-                    QueryDatos = "select F_Usu, F_nombre, F_Status, F_TipUsu from tb_usuario where F_Usu = '" + Nombren + "' and F_Pass = PASSWORD('" + Passn + "' ) and f_tipusu='6'";
+                    QueryDatos = "select F_Usu, F_nombre, F_Status, F_TipUsu from tb_usuario where F_Usu = '" + Nombren + "' and F_Pass = MD5('" + Passn + "' ) and f_tipusu='6'";
                     Consulta = ObjMySQL.consulta(QueryDatos);
                     if (Consulta.next()) {
                         banusu = 1;
@@ -623,11 +623,11 @@ public class ServletK extends HttpServlet {
                         sesion.setAttribute("nombre", nombrem);
                         sesion.setAttribute("Tipo", tipom);
 
-                        ObjMySQL.insertar("insert into tb_registroentradas values ('" + request.getParameter("nombre") + "',NOW(),1,0)");
+                        ObjMySQL.insertar("insert into tb_registroentradas values ('" + Nombren + "',NOW(),1,0)");
                         response.sendRedirect("Ubicaciones/Modificacion.jsp");
                     } else {//--------------------------EL USUARIO NO ES VÁLIDO
                         out.println("hola");
-                        ObjMySQL.insertar("insert into tb_registroentradas values ('" + request.getParameter("nombre") + "',NOW(),0,0)");
+                        ObjMySQL.insertar("insert into tb_registroentradas values ('" + Nombren + "',NOW(),0,0)");
                         sesion.setAttribute("mensaje", "Usuario no válido");
                         sesion.setAttribute("folio", foliom);
                         sesion.setAttribute("ubicacion", ubicam);
@@ -640,7 +640,7 @@ public class ServletK extends HttpServlet {
                     break;
                 case 14:
 
-                    response.sendRedirect("Ubicaciones/Consultas.jsp");
+                    response.sendRedirect("hh/ubicacionesConsultas.jsp");
                     break;
 
                 case 15:

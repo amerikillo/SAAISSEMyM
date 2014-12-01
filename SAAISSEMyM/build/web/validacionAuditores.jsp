@@ -78,7 +78,7 @@
                         </div>
 
                         <div class="row">
-                            <h4 class="col-sm-3">Seleccione el proveedor</h4>
+                            <h4 class="col-sm-3">Seleccione U.A.</h4>
                             <div class="col-sm-5">
                                 <select id="Nombre" name="Nombre" class="form-control">
                                     <option value="">Unidad</option>
@@ -111,7 +111,7 @@
                             <div class="col-sm-3">
                                 <input class="form-control" name="F_Cb" autofocus />
                             </div>
-                            <h4 class="col-sm-2">Clave</h4>
+                            <h4 class="col-sm-2">SICCAL</h4>
                             <div class="col-sm-3">
                                 <input class="form-control" name="F_Clave" />
                             </div>
@@ -154,7 +154,7 @@
                             <table class="table table-bordered table-condensed table-striped">
                                 <tr>
                                     <td>CB</td>
-                                    <td>Clave</td>
+                                    <td>SICCAL</td>
                                     <td>Lote</td>
                                     <td>Caducidad</td>
                                     <td>Ubicación</td>
