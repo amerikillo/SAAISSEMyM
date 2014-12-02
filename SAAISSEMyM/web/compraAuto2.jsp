@@ -163,8 +163,8 @@
         <div class="container">
             <h1>SIALSS</h1>
             <h4>Módulo - Sistema de Administración de Almacenes (SAA)</h4>
-            
-            <%@include file="../jspf/menuPrincipal.jspf" %>
+
+            <%@include file="jspf/menuPrincipal.jspf" %>
             <form action="compraAuto2.jsp" method="post">
                 <div class="row">
                     <label class="col-sm-2 text-right">
@@ -377,7 +377,7 @@
                                             }
                                             if (contadorLotes > 1) {
                                                 //Mas de 1 lote
-%>
+                                        %>
                                         <td>
                                             <input type="text" value="<%=Lote%>" class="form-control" name="lot" id="lot" onkeypress="return tabular(event, this)"/>
                                             <select class="form-control" name="list_lote" id="list_lote"  onchange="cambiaLoteCadu(this);" onkeypress="return tabular(event, this)">
@@ -568,7 +568,7 @@
 
                                                 <label for="Cajas" class="col-sm-2 control-label">Tarimas</label>
                                                 <div class="col-sm-1">
-                                                    <input type="Cajas" class="form-control" id="TarimasC" name="TarimasC" placeholder="0" onKeyPress="return justNumbers(event);
+                                                    <input type="text" class="form-control" id="TarimasC" name="TarimasC" placeholder="0" onKeyPress="return justNumbers(event);
                                                             return handleEnter(even);" onkeyup="totalPiezas()" onclick="" />
                                                 </div>
                                                 <label for="pzsxcaja" class="col-sm-2 control-label">Cajas x Tarima</label>
@@ -586,16 +586,16 @@
 
                                                 <label for="Cajas" class="hidden">Tarimas</label>
                                                 <div class="hidden">
-                                                    <input type="Cajas" class="form-control" id="TarimasI" name="TarimasI" placeholder="0" onKeyPress="return justNumbers(event);
+                                                    <input type="text" class="form-control" id="TarimasI" name="TarimasI" placeholder="0" onKeyPress="return justNumbers(event);
                                                             return handleEnter(even);" onkeyup="totalPiezas();" onclick="" />
                                                 </div>
                                                 <label for="pzsxcaja" class="col-sm-2 control-label">Cajas x Tarima</label>
                                                 <div class="col-sm-1">
-                                                    <input type="pzsxcaja" class="form-control" id="CajasxTI" name="CajasxTI" placeholder="0" onKeyPress="return justNumbers(event);" onkeyup="totalPiezas();" onclick=""/>
+                                                    <input type="text" class="form-control" id="CajasxTI" name="CajasxTI" placeholder="0" onKeyPress="return justNumbers(event);" onkeyup="totalPiezas();" onclick=""/>
                                                 </div>
                                                 <label for="pzsxcaja" class="col-sm-2 control-label">Resto</label>
                                                 <div class="col-sm-1">
-                                                    <input type="pzsxcaja" class="form-control" id="Resto" name="Resto" placeholder="0" onKeyPress="return justNumbers(event);" onkeyup="totalPiezas();" onclick=""/>
+                                                    <input type="text" class="form-control" id="Resto" name="Resto" placeholder="0" onKeyPress="return justNumbers(event);" onkeyup="totalPiezas();" onclick=""/>
                                                 </div>
                                             </div>
                                         </td>
@@ -961,20 +961,16 @@
         </div>
         <!--
         /Modal
-        -->
-    </body>
-
-
-    <!-- 
+        --><!-- 
     ================================================== -->
-    <!-- Se coloca al final del documento para que cargue mas rapido -->
-    <!-- Se debe de seguir ese orden al momento de llamar los JS -->
-    <script src="js/jquery-1.9.1.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/jquery-ui-1.10.3.custom.js"></script>
-    <script src="js/bootstrap-datepicker.js"></script>
-    <script src="js/funcIngresos.js"></script>
-    <script type="text/javascript">
+        <!-- Se coloca al final del documento para que cargue mas rapido -->
+        <!-- Se debe de seguir ese orden al momento de llamar los JS -->
+        <script src="js/jquery-1.9.1.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/jquery-ui-1.10.3.custom.js"></script>
+        <script src="js/bootstrap-datepicker.js"></script>
+        <script src="js/funcIngresos.js"></script>
+        <script type="text/javascript">
                                 /*$('#todosChk').click(function(event) {
                                  alert('hola');
                                  if (this.checked) {
@@ -1293,6 +1289,10 @@
                                     return false;
                                 }
 
-    </script>
+        </script>
+
+    </body>
+
+
 
 </html>

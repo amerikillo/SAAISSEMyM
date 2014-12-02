@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d36d56d-e705-43d8-bec6-461dd4e714a4">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="430"/>
 	<parameter name="Folfact" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT DISTINCT
@@ -176,10 +176,6 @@ ORDER BY
 				</textElement>
 				<text><![CDATA[FECHA DE ENTREGA:]]></text>
 			</staticText>
-			<image>
-				<reportElement uuid="8ead5fb0-95df-44c5-9070-ee881665499f" x="1" y="0" width="59" height="40"/>
-				<imageExpression><![CDATA["Logo GNK claro2.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement uuid="83580f10-239f-4474-871d-820c698eb6c9" x="90" y="-60" width="198" height="20"/>
 				<textElement textAlignment="Center">
@@ -395,17 +391,6 @@ ORDER BY
 				</textElement>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement uuid="3c68e853-63ca-402f-8f60-0217a6062f27" x="215" y="15" width="122" height="17"/>
-				<imageExpression><![CDATA["sialss.jpg"]]></imageExpression>
-			</image>
-			<staticText>
-				<reportElement uuid="d5054908-de0a-4225-bcc3-88df5402b4e5" x="40" y="32" width="491" height="14" forecolor="#0099CC"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font size="6"/>
-				</textElement>
-				<text><![CDATA[SISTEMA INTEGRAL DE ADMINISTRACIÓN Y LOGÍSTICA PARA SERVICIOS DE SALUD]]></text>
-			</staticText>
 		</band>
 	</pageFooter>
 	<lastPageFooter>
@@ -424,17 +409,6 @@ ORDER BY
 				</textElement>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement uuid="9e2c9942-5817-4d50-a105-5368237a87bb" x="216" y="11" width="122" height="17"/>
-				<imageExpression><![CDATA["sialss.jpg"]]></imageExpression>
-			</image>
-			<staticText>
-				<reportElement uuid="88a70b83-c479-4587-bf1c-60b9b59aacb2" x="40" y="28" width="491" height="14" forecolor="#0099CC"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font size="6"/>
-				</textElement>
-				<text><![CDATA[SISTEMA INTEGRAL DE ADMINISTRACIÓN Y LOGÍSTICA PARA SERVICIOS DE SALUD]]></text>
-			</staticText>
 		</band>
 	</lastPageFooter>
 	<summary>
@@ -469,13 +443,6 @@ ORDER BY
 				<reportElement uuid="dca215c6-8534-4948-bc3c-61275c6d3dab" x="3" y="0" width="568" height="1" forecolor="#666666"/>
 			</line>
 			<staticText>
-				<reportElement uuid="eac13648-00d6-4431-9ac5-a947294f30cc" x="16" y="133" width="168" height="14"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[OSCAR ARELLANO GARCÍA]]></text>
-			</staticText>
-			<staticText>
 				<reportElement uuid="9beb52cf-c0c3-4382-bbc1-339dfdd1a720" x="204" y="197" width="168" height="22"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
@@ -487,7 +454,7 @@ ORDER BY
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Lic. Yolanda Orozco Paulín]]></text>
+				<text><![CDATA[VICENTE FLORES ZAMORANO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="949c2054-27aa-45c5-b772-1028651d7685" x="16" y="110" width="168" height="28"/>

@@ -15,10 +15,6 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <%
-                    if(tipo.equals("2") || tipo.equals("3") || tipo.equals("1")){
-                        
-                %>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Entradas<b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -69,11 +65,6 @@
                         <li><a href="#"  onclick="window.open('devolucionesInsumo.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Devolver</a></li-->
                     </ul>
                 </li>
-
-                <%
-                }
-                    if (tipo.equals("7")) {
-                %>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Facturación<b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -108,9 +99,6 @@
 
                     </ul>
                 </li>
-                <%
-                    }
-                %>
                 <!--li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inventario<b class="caret"></b></a>
                     <ul class="dropdown-menu">

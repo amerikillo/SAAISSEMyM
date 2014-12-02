@@ -120,7 +120,8 @@ public class Medicamentos extends HttpServlet {
                         } else {
                             TpMed = Integer.parseInt(request.getParameter("list_medica").toUpperCase());
 
-                            con.insertar("insert into tb_medica values ('" + request.getParameter("Clave").toUpperCase() + "','" + request.getParameter("Descripcion").toUpperCase() + "','A','" + TpMed + "','" + request.getParameter("Costo").toUpperCase() + "','" + request.getParameter("PresPro").toUpperCase() + "');");
+                            con.insertar("insert into tb_medica values ('" + request.getParameter("Clave").toUpperCase() + "','" + request.getParameter("Descripcion").toUpperCase() + "','A','" + TpMed + "','" + request.getParameter("Costo").toUpperCase() + "','" + request.getParameter("PresPro").toUpperCase() + "','"+request.getParameter("SAP").toUpperCase() +"');");
+                            con.insertar("insert into tb_maxmodula values('" + request.getParameter("Clave").toUpperCase() + "','" + request.getParameter("Max").toUpperCase() + "','" + request.getParameter("Min").toUpperCase() + "','0')");
                         }
                     } catch (SQLException e) {
                         System.out.println(e.getMessage());
@@ -134,7 +135,37 @@ public class Medicamentos extends HttpServlet {
                 }
 
             }
+            if (request.getParameter("accion").equals("Actualizar")) {
+                try {
+                    con.conectar();
+                    ResultSet rset = con.consulta("select F_ClaPro from tb_medica");
+                    while (rset.next()) {
+                        int banMedicamento = 0;
+                        ResultSet rset2 = con.consulta("select F_Id from tb_maxmodula where F_ClaPro = '" + rset.getString("F_ClaPro") + "'");
+                        while (rset2.next()) {
+                            banMedicamento = 1;
+                        }
+                        if (banMedicamento == 0) {
+                            try {
+                                con.insertar("insert into tb_maxmodula values('" + rset.getString("F_ClaPro") + "','" + request.getParameter("Max" + rset.getString("F_ClaPro")) + "','" + request.getParameter("Min" + rset.getString("F_ClaPro")) + "','0')");
+                            } catch (Exception e) {
+                            }
+                        } else {
 
+                            try {
+
+                                con.insertar("update tb_maxmodula set F_Max = '" + request.getParameter("Max" + rset.getString("F_ClaPro")) + "', F_Min ='" + request.getParameter("Min" + rset.getString("F_ClaPro")) + "' where F_ClaPro='" + rset.getString("F_ClaPro") + "'");
+                            } catch (Exception e) {
+                            }
+                        }
+                    }
+                    con.cierraConexion();
+                } catch (Exception e) {
+                    out.println("<script>alert('Error: " + e.getMessage() + "')</script>");
+                    out.println("<script>window.location='medicamento.jsp'</script>");
+                }
+                out.println("<script>window.location='medicamento.jsp'</script>");
+            }
             if (request.getParameter("accion").equals("obtieneProvee")) {
                 try {
                     proveedores();
