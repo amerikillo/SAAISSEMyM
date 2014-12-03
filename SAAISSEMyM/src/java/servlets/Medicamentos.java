@@ -21,9 +21,7 @@ import javax.servlet.http.HttpSession;
  */
 public class Medicamentos extends HttpServlet {
 
-    ConectionDB con = new ConectionDB();
     //ConectionDB_SQLServer consql = new ConectionDB_SQLServer();
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,6 +36,8 @@ public class Medicamentos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         HttpSession sesion = request.getSession(true);
+        ConectionDB con = new ConectionDB();
+        ConectionDB_SQLServer conModula = new ConectionDB_SQLServer();
         try {
             /*
              *Para actualizar Registros
@@ -107,6 +107,7 @@ public class Medicamentos extends HttpServlet {
                     String Nombre = "";
                     int TpMed = 0;
                     con.conectar();
+                    conModula.conectar();
                     try {
 
                         ResultSet rst_prov = con.consulta("SELECT F_ClaPro FROM tb_medica WHERE F_ClaPro='" + request.getParameter("Clave").toUpperCase() + "'");
@@ -119,13 +120,16 @@ public class Medicamentos extends HttpServlet {
 
                         } else {
                             TpMed = Integer.parseInt(request.getParameter("list_medica").toUpperCase());
-
-                            con.insertar("insert into tb_medica values ('" + request.getParameter("Clave").toUpperCase() + "','" + request.getParameter("Descripcion").toUpperCase() + "','A','" + TpMed + "','" + request.getParameter("Costo").toUpperCase() + "','" + request.getParameter("PresPro").toUpperCase() + "','"+request.getParameter("SAP").toUpperCase() +"');");
+                            conModula.ejecutar("insert into IMP_ARTICOLI (ART_OPERAZIONE, ART_ARTICOLO, ART_DES, ART_UMI, ART_MIN, ART_PROY) values ('I','" + request.getParameter("Clave").toUpperCase() + "','" + request.getParameter("Descripcion").toUpperCase() + "','PZ','" + request.getParameter("Min").toUpperCase() + "', 'ISSEMyM')");
+                            con.insertar("insert into tb_medica values ('" + request.getParameter("Clave").toUpperCase() + "','" + request.getParameter("Descripcion").toUpperCase() + "','A','" + TpMed + "','" + request.getParameter("Costo").toUpperCase() + "','" + request.getParameter("PresPro").toUpperCase() + "','" + request.getParameter("SAP").toUpperCase() + "');");
                             con.insertar("insert into tb_maxmodula values('" + request.getParameter("Clave").toUpperCase() + "','" + request.getParameter("Max").toUpperCase() + "','" + request.getParameter("Min").toUpperCase() + "','0')");
                         }
                     } catch (SQLException e) {
                         System.out.println(e.getMessage());
+                        out.println("<script>alert('Error: " + e.getMessage() + "')</script>");
+                        out.println("<script>window.location='medicamento.jsp'</script>");
                     }
+                    conModula.cierraConexion();
                     con.cierraConexion();
 
                     out.println("<script>alert('Medicamento capturado correctamente.')</script>");
@@ -137,11 +141,12 @@ public class Medicamentos extends HttpServlet {
             }
             if (request.getParameter("accion").equals("Actualizar")) {
                 try {
+                    conModula.conectar();
                     con.conectar();
-                    ResultSet rset = con.consulta("select F_ClaPro from tb_medica");
+                    ResultSet rset = con.consulta("select * from tb_medica");
                     while (rset.next()) {
                         int banMedicamento = 0;
-                        ResultSet rset2 = con.consulta("select F_Id from tb_maxmodula where F_ClaPro = '" + rset.getString("F_ClaPro") + "'");
+                        ResultSet rset2 = con.consulta("select F_Id, F_Min from tb_maxmodula where F_ClaPro = '" + rset.getString("F_ClaPro") + "'");
                         while (rset2.next()) {
                             banMedicamento = 1;
                         }
@@ -158,9 +163,18 @@ public class Medicamentos extends HttpServlet {
                             } catch (Exception e) {
                             }
                         }
+                        rset2 = con.consulta("select F_Id, F_Min from tb_maxmodula where F_ClaPro = '" + rset.getString("F_ClaPro") + "'");
+                        int min = 0;
+                        while (rset2.next()) {
+                            banMedicamento = 1;
+                            min = rset2.getInt("F_Min");
+                        }
+                        conModula.ejecutar("insert into IMP_ARTICOLI (ART_OPERAZIONE, ART_ARTICOLO, ART_DES, ART_UMI, ART_MIN, ART_PROY) values ('I','" + rset.getString("F_ClaPro") + "','" + rset.getString("F_DesPro") + "','PZ','" + min + "', 'ISSEMyM')");
                     }
+                    conModula.cierraConexion();
                     con.cierraConexion();
                 } catch (Exception e) {
+                    System.out.println(e.getMessage());
                     out.println("<script>alert('Error: " + e.getMessage() + "')</script>");
                     out.println("<script>window.location='medicamento.jsp'</script>");
                 }
@@ -168,7 +182,6 @@ public class Medicamentos extends HttpServlet {
             }
             if (request.getParameter("accion").equals("obtieneProvee")) {
                 try {
-                    proveedores();
                     out.println("<script>alert('Se obtuvieron los Proveedores Correctamente')</script>");
                 } catch (Exception e) {
                     out.println("<script>alert('Error al obtener proveedores')</script>");
@@ -218,23 +231,5 @@ public class Medicamentos extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    public void proveedores() {
-        try {
-            //consql.conectar();
-            con.conectar();
-            try {
-                /*con.insertar("truncate table provee_all");
-                 ResultSet rset = consql.consulta("select * from TB_Provee;");
-                 while (rset.next()) {
-                 con.insertar("insert into provee_all values ('" + rset.getString(1) + "', '" + rset.getString(2) + "', '" + rset.getString(3) + "', '" + rset.getString(4) + "', '" + rset.getString(5) + "', '" + rset.getString(6) + "', '" + rset.getString(7) + "', '" + rset.getString(8) + "' ,'" + rset.getString(9) + "', '" + rset.getString(10) + "', '" + rset.getString(11) + "', '" + rset.getString(12) + "', '" + rset.getString(13) + "')");
-                 }*/
-            } catch (Exception e) {
-            }
-            con.cierraConexion();
-            //consql.cierraConexion();
-        } catch (Exception e) {
-        }
-    }
 
 }

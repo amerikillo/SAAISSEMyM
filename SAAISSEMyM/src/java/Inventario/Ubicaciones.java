@@ -6,6 +6,7 @@
 package Inventario;
 
 import conn.ConectionDB;
+import conn.ConectionDB_SQLServer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -59,6 +60,8 @@ public class Ubicaciones extends HttpServlet {
         int idLoteNuevo = 0;
         Devoluciones objDev = new Devoluciones();
         ConectionDB con = new ConectionDB();
+        ConectionDB_SQLServer conModula = new ConectionDB_SQLServer();
+        conModula.conectar();
         con.conectar();
         String UbicaMov = CBUbica;
         int CantMov = Integer.parseInt(cantMov);
@@ -90,8 +93,10 @@ public class Ubicaciones extends HttpServlet {
 
         if (F_IdLote != 0) {//Ya existe insumo en el desitno
             con.insertar("update tb_lote set F_ExiLot = '" + (F_ExiLotDestino + CantMov) + "' where F_IdLote='" + F_IdLote + "'");
+            conModula.ejecutar("insert into IMP_AVVISIINGRESSO values('A','" + F_ClaPro + "','" + F_ClaLot + "','1','" + (F_ExiLotDestino + CantMov) + "','" + F_FecCad + "','" + F_Cb + "','','')");
         } else {//No existe insumo en el destino
             con.insertar("insert into tb_lote values(0,'" + F_ClaPro + "','" + F_ClaLot + "','" + F_FecCad + "','" + CantMov + "','" + F_FolLot + "','" + F_ClaOrg + "','" + UbicaMov + "','" + F_FecFab + "','" + F_Cb + "','" + F_ClaMar + "')");
+            conModula.ejecutar("insert into IMP_AVVISIINGRESSO values('A','" + F_ClaPro + "','" + F_ClaLot + "','1','" + (CantMov) + "','" + F_FecCad + "','" + F_Cb + "','','')");
         }
         con.insertar("update tb_lote set F_ExiLot = '" + (F_ExiLot - CantMov) + "' where F_IdLote = '" + idLote + "' ");
 
@@ -102,6 +107,7 @@ public class Ubicaciones extends HttpServlet {
         while (rset.next()) {
             idLoteNuevo = rset.getInt("F_IdLote");
         }
+        conModula.cierraConexion();
         con.cierraConexion();
         return idLoteNuevo;
     }
