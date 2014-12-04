@@ -43,7 +43,7 @@ public class ConectionDB_SQLServer {
         //poner los datos apropiados
         this.usuario = "system_Españ";
         this.clave = "SYS123";
-        this.url = "jdbc:sqlserver://192.168.0.140\\PC_SYSTEM\\SQLEXPRESS:49157;databaseName=HOST_IMPEXP_GNK";
+        this.url = "jdbc:sqlserver://192.168.0.245\\HP-PC\\SQLEXPRESS:49170;databaseName=HOST_IMPEXP_GNK";
         this.driverClassName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     }
 

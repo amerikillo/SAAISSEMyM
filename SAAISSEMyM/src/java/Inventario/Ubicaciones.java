@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -65,6 +68,7 @@ public class Ubicaciones extends HttpServlet {
         con.conectar();
         String UbicaMov = CBUbica;
         int CantMov = Integer.parseInt(cantMov);
+        DateFormat df = new SimpleDateFormat("yyyyMMddhhmmss");
         String F_ClaPro = "", F_ClaLot = "", F_FecCad = "", F_FolLot = "", F_ClaOrg = "", F_Ubica = "", F_FecFab = "", F_Cb = "", F_ClaMar = "";
         int F_ExiLot = 0, F_IdLote = 0, F_ExiLotDestino = 0;
         ResultSet rset = con.consulta("select * from tb_lote where F_IdLote = '" + idLote + "' ");
@@ -93,10 +97,14 @@ public class Ubicaciones extends HttpServlet {
 
         if (F_IdLote != 0) {//Ya existe insumo en el desitno
             con.insertar("update tb_lote set F_ExiLot = '" + (F_ExiLotDestino + CantMov) + "' where F_IdLote='" + F_IdLote + "'");
-            conModula.ejecutar("insert into IMP_AVVISIINGRESSO values('A','" + F_ClaPro + "','" + F_ClaLot + "','1','" + (F_ExiLotDestino + CantMov) + "','" + F_FecCad + "','" + F_Cb + "','','')");
+            if (CBUbica.equals("MODULA")) {
+                conModula.ejecutar("insert into IMP_AVVISIINGRESSO values('A','" + F_ClaPro + "','" + F_ClaLot + "','1','" + (CantMov) + "','" + F_FecCad + "','" + F_Cb + "','','','" + df.format(new Date()) + "')");
+            }
         } else {//No existe insumo en el destino
             con.insertar("insert into tb_lote values(0,'" + F_ClaPro + "','" + F_ClaLot + "','" + F_FecCad + "','" + CantMov + "','" + F_FolLot + "','" + F_ClaOrg + "','" + UbicaMov + "','" + F_FecFab + "','" + F_Cb + "','" + F_ClaMar + "')");
-            conModula.ejecutar("insert into IMP_AVVISIINGRESSO values('A','" + F_ClaPro + "','" + F_ClaLot + "','1','" + (CantMov) + "','" + F_FecCad + "','" + F_Cb + "','','')");
+            if (CBUbica.equals("MODULA")) {
+                conModula.ejecutar("insert into IMP_AVVISIINGRESSO values('A','" + F_ClaPro + "','" + F_ClaLot + "','1','" + (CantMov) + "','" + F_FecCad + "','" + F_Cb + "','','''" + df.format(new Date()) + "')");
+            }
         }
         con.insertar("update tb_lote set F_ExiLot = '" + (F_ExiLot - CantMov) + "' where F_IdLote = '" + idLote + "' ");
 

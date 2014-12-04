@@ -33,6 +33,7 @@
             //con.ejecutar("insert into IMP_AVVISIINGRESSO values('I','0437','LOTE12','100','20160517','','')");
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            out.println(e.getMessage());
         }
 %>
 <html>
