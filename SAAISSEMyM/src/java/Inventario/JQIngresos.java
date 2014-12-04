@@ -37,8 +37,22 @@ public class JQIngresos extends HttpServlet {
         PrintWriter out = response.getWriter();
         ConectionDB con = new ConectionDB();
         try {
-            System.out.println("hola");
             if (request.getParameter("accion").equals("buscaClave")) {
+                con.conectar();
+                JSONObject json = new JSONObject();
+                JSONArray jsona = new JSONArray();
+                ResultSet rset = con.consulta("select F_Clave from tb_pedidoisem where F_Clave like '%" + request.getParameter("clave") + "%' limit 0,10");
+                while (rset.next()) {
+                    json.put("F_ClaPro", rset.getString(1).trim().replaceAll("\\n", ""));
+                    jsona.add(json);
+                    json = new JSONObject();
+                }
+                con.cierraConexion();
+                out.println(jsona);
+                System.out.println(jsona);
+            }
+            
+            if (request.getParameter("accion").equals("buscaClaveTodas")) {
                 con.conectar();
                 JSONObject json = new JSONObject();
                 JSONArray jsona = new JSONArray();

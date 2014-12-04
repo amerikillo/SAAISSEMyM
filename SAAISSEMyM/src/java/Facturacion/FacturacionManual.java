@@ -344,6 +344,7 @@ public class FacturacionManual extends HttpServlet {
             if (request.getParameter("accion").equals("btnClave")) {
                 try {
                     String F_IndGlobal = (String) sesion.getAttribute("F_IndGlobal");
+                    int banInsumo=0;
                     if (F_IndGlobal == null) {
                         sesion.setAttribute("F_IndGlobal", dameIndGlobal() + "");
                         F_IndGlobal = (String) sesion.getAttribute("F_IndGlobal");
@@ -351,13 +352,17 @@ public class FacturacionManual extends HttpServlet {
                     con.conectar();
                     ResultSet rset = con.consulta("select m.F_ClaPro, m.F_DesPro, l.F_ClaLot, l.F_FolLot, DATE_FORMAT(l.F_FecCad, '%d/%m/%Y') from tb_medica m, tb_lote l where m.F_ClaPro = l.F_ClaPro and m.F_ClaPro = '" + request.getParameter("ClaPro") + "' group by m.F_ClaPro;");
                     while (rset.next()) {
+                        banInsumo=1;
                         sesion.setAttribute("DesProFM", rset.getString(2));
                     }
                     con.cierraConexion();
                     sesion.setAttribute("ClaCliFM", request.getParameter("ClaCli"));
                     sesion.setAttribute("FechaEntFM", request.getParameter("FechaEnt"));
                     sesion.setAttribute("ClaProFM", request.getParameter("ClaPro"));
-                    response.sendRedirect("facturacionManual.jsp");
+                    if(banInsumo==0){
+                        out.println("<script>alert('Insumo sin Existencias')</script>");
+                    }
+                    out.println("<script>window.location='facturacionManual.jsp'</script>");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }

@@ -62,7 +62,7 @@
         <div class="container">
             <h1>SIALSS</h1>
             <h4>Módulo - Sistema de Administración de Almacenes (SAA)</h4>
-            
+
             <%@include file="jspf/menuPrincipal.jspf" %>
 
             <div class="row">
@@ -213,15 +213,15 @@
             </form>
         </div>
         <%@include file="../jspf/piePagina.jspf" %>
-    </body>
-    <!-- 
-    ================================================== -->
-    <!-- Se coloca al final del documento para que cargue mas rapido -->
-    <!-- Se debe de seguir ese orden al momento de llamar los JS -->
-    <script src="js/jquery-1.9.1.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/jquery-ui-1.10.3.custom.js"></script>
-    <script>
+        <!-- 
+   ================================================== -->
+        <!-- Se coloca al final del documento para que cargue mas rapido -->
+        <!-- Se debe de seguir ese orden al momento de llamar los JS -->
+        <script src="js/jquery-1.9.1.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/jquery-ui-1.10.3.custom.js"></script>
+        <script src="js/funcIngresos.js"></script>
+        <script>
                             function justNumbers(e)
                             {
                                 var keynum = window.event ? window.event.keyCode : e.which;
@@ -268,6 +268,8 @@
                                 }
 
                             }
-    </script>
+        </script>
+    </body>
+
 </html>
 

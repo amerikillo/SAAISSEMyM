@@ -251,7 +251,7 @@
                                 <h4 class="col-sm-3">Folio Orden de Compra:</h4>
                                 <div class="col-sm-2"><input class="form-control" value="<%=rset.getString(1)%>" readonly="" name="folio" id="folio" onkeypress="return tabular(event, this)" /></div>
                                 <h4 class="col-sm-2 text-right">Folio de Remisión:</h4>
-                                <div class="col-sm-2"><input class="form-control" value="<%=folioRemi%>" name="folioRemi" id="folioRemi" onkeypress="return tabular(event, this)" /></div>
+                                <div class="col-sm-2"><input class="form-control" value="Prueba<%//=folioRemi%>" name="folioRemi" id="folioRemi" onkeypress="return tabular(event, this)" /></div>
                                 <div class="col-sm-2">
                                     <%
                                         if (tipo.equals("2") || tipo.equals("3") || tipo.equals("5")) {

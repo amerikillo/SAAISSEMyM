@@ -650,22 +650,18 @@
             }
         %>
 
-    </body>
-    <%@include file="jspf/piePagina.jspf" %>
-</html>
+        <!-- 
+        ================================================== -->
+        <!-- Se coloca al final del documento para que cargue mas rapido -->
+        <!-- Se debe de seguir ese orden al momento de llamar los JS -->
 
+        <script src="js/jquery-1.9.1.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/jquery-ui-1.10.3.custom.js"></script>
+        <script src="js/bootstrap-datepicker.js"></script>
+        <script src="js/funcIngresos.js"></script>
 
-<!-- 
-================================================== -->
-<!-- Se coloca al final del documento para que cargue mas rapido -->
-<!-- Se debe de seguir ese orden al momento de llamar los JS -->
-
-<script src="js/jquery-1.9.1.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/jquery-ui-1.10.3.custom.js"></script>
-<script src="js/bootstrap-datepicker.js"></script>
-
-<script>
+        <script>
 
 
                     var formatNumber = {
@@ -745,17 +741,17 @@
 
                     $(function() {
                         var availableTags = [
-    <%
-        try {
-            con.conectar();
-            ResultSet rset = con.consulta("SELECT F_DesPro  FROM tb_medica");
-            while (rset.next()) {
-                out.println("\'" + rset.getString("F_DesPro") + "\',");
-            }
-            con.cierraConexion();
-        } catch (Exception e) {
-        }
-    %>
+            <%
+                try {
+                    con.conectar();
+                    ResultSet rset = con.consulta("SELECT F_DesPro  FROM tb_medica");
+                    while (rset.next()) {
+                        out.println("\'" + rset.getString("F_DesPro") + "\',");
+                    }
+                    con.cierraConexion();
+                } catch (Exception e) {
+                }
+            %>
                         ];
                         $("#descr").autocomplete({
                             source: availableTags
@@ -763,17 +759,17 @@
                     });
                     $(function() {
                         var availableTags = [
-    <%
-        try {
-            con.conectar();
-            ResultSet rset = con.consulta("SELECT F_NomPro  FROM tb_proveedor");
-            while (rset.next()) {
-                out.println("\'" + rset.getString("F_NomPro") + "\',");
-            }
-            con.cierraConexion();
-        } catch (Exception e) {
-        }
-    %>
+            <%
+                try {
+                    con.conectar();
+                    ResultSet rset = con.consulta("SELECT F_NomPro  FROM tb_proveedor");
+                    while (rset.next()) {
+                        out.println("\'" + rset.getString("F_NomPro") + "\',");
+                    }
+                    con.cierraConexion();
+                } catch (Exception e) {
+                }
+            %>
                         ];
                         $("#provee").autocomplete({
                             source: availableTags
@@ -847,10 +843,10 @@
                             document.getElementById('list_marca').focus();
                             window.scrollTo(0, 380);
                         }
-    <%
-        try {
-            if (sesion.getAttribute("CBInex").equals("1") && Cuenta == 0) {
-    %>
+            <%
+                try {
+                    if (sesion.getAttribute("CBInex").equals("1") && Cuenta == 0) {
+            %>
                         if (document.formulario1.cb.value === "") {
                             document.formulario1.cb.value = ('<%=(String) sesion.getAttribute("cb")%>');
                         }
@@ -864,12 +860,12 @@
                             document.getElementById('list_marca').focus();
                             window.scrollTo(0, 380);
                         }
-    <%
-            }
-        } catch (Exception e) {
+            <%
+                    }
+                } catch (Exception e) {
 
-        }
-    %>
+                }
+            %>
                     }
 
 
@@ -1121,4 +1117,8 @@
 
 
 
-</script> 
+        </script> 
+    </body>
+    <%@include file="jspf/piePagina.jspf" %>
+</html>
+
