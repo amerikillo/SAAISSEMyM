@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.ServletException;
@@ -59,7 +60,7 @@ public class Ubicaciones extends HttpServlet {
         }
     }
 
-    public int Reubica(String idLote, String CBUbica, String cantMov, String Nombre) throws SQLException {
+    public int Reubica(String idLote, String CBUbica, String cantMov, String Nombre) throws SQLException, ParseException {
         int idLoteNuevo = 0;
         Devoluciones objDev = new Devoluciones();
         ConectionDB con = new ConectionDB();
@@ -69,6 +70,8 @@ public class Ubicaciones extends HttpServlet {
         String UbicaMov = CBUbica;
         int CantMov = Integer.parseInt(cantMov);
         DateFormat df = new SimpleDateFormat("yyyyMMddhhmmss");
+        DateFormat df2 = new SimpleDateFormat("yyyyMMdd");
+        DateFormat df3 = new SimpleDateFormat("yyyy-MM-dd");
         String F_ClaPro = "", F_ClaLot = "", F_FecCad = "", F_FolLot = "", F_ClaOrg = "", F_Ubica = "", F_FecFab = "", F_Cb = "", F_ClaMar = "";
         int F_ExiLot = 0, F_IdLote = 0, F_ExiLotDestino = 0;
         ResultSet rset = con.consulta("select * from tb_lote where F_IdLote = '" + idLote + "' ");
@@ -98,12 +101,12 @@ public class Ubicaciones extends HttpServlet {
         if (F_IdLote != 0) {//Ya existe insumo en el desitno
             con.insertar("update tb_lote set F_ExiLot = '" + (F_ExiLotDestino + CantMov) + "' where F_IdLote='" + F_IdLote + "'");
             if (CBUbica.equals("MODULA")) {
-                conModula.ejecutar("insert into IMP_AVVISIINGRESSO values('A','" + F_ClaPro + "','" + F_ClaLot + "','1','" + (CantMov) + "','" + F_FecCad + "','" + F_Cb + "','','','" + df.format(new Date()) + "')");
+                conModula.ejecutar("insert into IMP_AVVISIINGRESSO (RIG_OPERAZIONE, RIG_ARTICOLO, RIG_SUB1, RIG_SUB2, RIG_QTAR, RIG_DSCAD, RIG_REQ_NOTE, RIG_ATTR1, RIG_ERRORE, RIG_HOSTINF) values('A','" + F_ClaPro + "','" + F_ClaLot + "','1','" + (CantMov) + "','" + F_FecCad.replace("-", "") + "','" + F_Cb + "','','','" + df.format(new Date()) + "')");
             }
         } else {//No existe insumo en el destino
             con.insertar("insert into tb_lote values(0,'" + F_ClaPro + "','" + F_ClaLot + "','" + F_FecCad + "','" + CantMov + "','" + F_FolLot + "','" + F_ClaOrg + "','" + UbicaMov + "','" + F_FecFab + "','" + F_Cb + "','" + F_ClaMar + "')");
             if (CBUbica.equals("MODULA")) {
-                conModula.ejecutar("insert into IMP_AVVISIINGRESSO values('A','" + F_ClaPro + "','" + F_ClaLot + "','1','" + (CantMov) + "','" + F_FecCad + "','" + F_Cb + "','','''" + df.format(new Date()) + "')");
+                conModula.ejecutar("insert into IMP_AVVISIINGRESSO  (RIG_OPERAZIONE, RIG_ARTICOLO, RIG_SUB1, RIG_SUB2, RIG_QTAR, RIG_DSCAD, RIG_REQ_NOTE, RIG_ATTR1, RIG_ERRORE, RIG_HOSTINF) values('A','" + F_ClaPro + "','" + F_ClaLot + "','1','" + (CantMov) + "','" + F_FecCad.replace("-", "") + "','" + F_Cb + "','','','" + df.format(new Date()) + "')");
             }
         }
         con.insertar("update tb_lote set F_ExiLot = '" + (F_ExiLot - CantMov) + "' where F_IdLote = '" + idLote + "' ");

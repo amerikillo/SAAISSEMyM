@@ -52,13 +52,13 @@ public class FacturacionManual extends HttpServlet {
         try {
             if (!request.getParameter("accionEliminar").equals("")) {
 
-                sesion.setAttribute("F_IndGlobal", null);
+                //sesion.setAttribute("F_IndGlobal", null);
                 con.conectar();
-                ResultSet rset = con.consulta("select * from tb_facttemp where F_IdFact = '" + request.getParameter("accionEliminar") + "'");
+                ResultSet rset = con.consulta("select * from tb_facttemp where F_Id = '" + request.getParameter("accionEliminar") + "'");
                 while (rset.next()) {
                     con.insertar("insert into tb_facttemp_elim values ('" + rset.getString(1) + "','" + rset.getString(2) + "','" + rset.getString(3) + "','" + rset.getString(4) + "','" + rset.getString(5) + "','" + rset.getString(6) + "','" + rset.getString(7) + "', '" + (String) sesion.getAttribute("nombre") + "', NOW())");
                 }
-                con.insertar("delete from tb_facttemp where F_IdFact = '" + request.getParameter("accionEliminar") + "' ");
+                con.insertar("delete from tb_facttemp where F_Id = '" + request.getParameter("accionEliminar") + "' ");
                 con.cierraConexion();
                 out.println("<script>alert('Clave Eliminada Correctamente')</script>");
                 out.println("<script>window.location='facturacionManual.jsp'</script>");
@@ -208,7 +208,6 @@ public class FacturacionManual extends HttpServlet {
                     con.conectar();
                     //consql.conectar();
                     int FolioFactura = 0;
-                    String ClaUni = request.getParameter("Nombre");
                     String FechaE = request.getParameter("Fecha");
                     ResultSet FolioFact = con.consulta("SELECT F_IndFact FROM tb_indice");
                     while (FolioFact.next()) {
@@ -222,9 +221,10 @@ public class FacturacionManual extends HttpServlet {
                     if (req.equals("")) {
                         req = "00000";
                     }
-                    String qryFact = "select f.F_ClaCli, l.F_FolLot, l.F_IdLote, l.F_ClaPro, l.F_ClaLot, l.F_FecCad, m.F_TipMed, m.F_Costo, p.F_ClaProve, f.F_Cant, l.F_ExiLot, l.F_Ubica, f.F_IdFact, f.F_Id, f.F_FecEnt  from tb_facttemp f, tb_lote l, tb_medica m, tb_proveedor p where f.F_IdLot = l.F_IdLote AND l.F_ClaPro = m.F_ClaPro AND l.F_ClaOrg = p.F_ClaProve and f.F_ClaCLi = '" + request.getParameter("Nombre") + "' and f.F_StsFact=4 AND (f.F_Id IN (" + claves + ")) ";
+                    String qryFact = "select f.F_ClaCli, l.F_FolLot, l.F_IdLote, l.F_ClaPro, l.F_ClaLot, l.F_FecCad, m.F_TipMed, m.F_Costo, p.F_ClaProve, f.F_Cant, l.F_ExiLot, l.F_Ubica, f.F_IdFact, f.F_Id, f.F_FecEnt  from tb_facttemp f, tb_lote l, tb_medica m, tb_proveedor p where f.F_IdLot = l.F_IdLote AND l.F_ClaPro = m.F_ClaPro AND l.F_ClaOrg = p.F_ClaProve and f.F_IdFact = '" + request.getParameter("Nombre") + "' and f.F_StsFact=4 AND (f.F_Id IN (" + claves + ")) ";
                     ResultSet rset = con.consulta(qryFact);
                     while (rset.next()) {
+                        String ClaUni = rset.getString("F_ClaCli");
                         String Clave = rset.getString("F_ClaPro");
                         String Caducidad = rset.getString("F_FecCad");
                         String FolioLote = rset.getString("F_FolLot");
@@ -310,7 +310,7 @@ public class FacturacionManual extends HttpServlet {
             if (request.getParameter("accion").equals("ConfirmarFactura")) {
                 try {
                     con.conectar();
-                    RequerimientoModula reqMod= new RequerimientoModula();
+                    RequerimientoModula reqMod = new RequerimientoModula();
                     reqMod.enviaRequerimiento((String) sesion.getAttribute("F_IndGlobal"));
                     con.insertar("update tb_facttemp set F_StsFact = '0' where F_IdFact = '" + (String) sesion.getAttribute("F_IndGlobal") + "' ");
                     con.cierraConexion();
@@ -323,6 +323,11 @@ public class FacturacionManual extends HttpServlet {
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
+            }
+            if (request.getParameter("accion").equals("ReenviarFactura")) {
+                RequerimientoModula reqMod = new RequerimientoModula();
+                reqMod.enviaRequerimiento(request.getParameter("fol_gnkl"));
+                response.sendRedirect("reimpConcentrado.jsp");
             }
             if (request.getParameter("accion").equals("AgregarClave")) {
                 try {

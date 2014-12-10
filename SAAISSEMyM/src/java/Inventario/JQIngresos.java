@@ -43,7 +43,11 @@ public class JQIngresos extends HttpServlet {
                 JSONArray jsona = new JSONArray();
                 ResultSet rset = con.consulta("select F_Clave from tb_pedidoisem where F_Clave like '%" + request.getParameter("clave") + "%' limit 0,10");
                 while (rset.next()) {
+<<<<<<< HEAD
+                    json.put("F_Clave", rset.getString(1).trim().replaceAll("\\n", ""));
+=======
                     json.put("F_ClaPro", rset.getString(1).trim().replaceAll("\\n", ""));
+>>>>>>> FETCH_HEAD
                     jsona.add(json);
                     json = new JSONObject();
                 }
@@ -51,12 +55,19 @@ public class JQIngresos extends HttpServlet {
                 out.println(jsona);
                 System.out.println(jsona);
             }
+<<<<<<< HEAD
+=======
             
+>>>>>>> FETCH_HEAD
             if (request.getParameter("accion").equals("buscaClaveTodas")) {
                 con.conectar();
                 JSONObject json = new JSONObject();
                 JSONArray jsona = new JSONArray();
+<<<<<<< HEAD
+                ResultSet rset = con.consulta("select F_ClaPro from tb_medica where F_ClaPro like '%" + request.getParameter("clave") + "%' group by F_ClaPro limit 0,10");
+=======
                 ResultSet rset = con.consulta("select F_ClaPro from tb_medica where F_ClaPro like '%" + request.getParameter("clave") + "%' limit 0,10");
+>>>>>>> FETCH_HEAD
                 while (rset.next()) {
                     json.put("F_ClaPro", rset.getString(1).trim().replaceAll("\\n", ""));
                     jsona.add(json);

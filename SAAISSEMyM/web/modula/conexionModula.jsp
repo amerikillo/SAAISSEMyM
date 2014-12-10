@@ -94,6 +94,20 @@
         <form action="../AbasteceModula">
             <button class="btn btn-large btn-primary btn-block"  name="accion" value="AbastecerConcentrado">Abastecer</button>
         </form>
+
+        <%
+            try {
+                con.conectar();
+
+                ResultSet rset = con.consulta("select * from VIEW_MODULA_EXISTENCIA_MIN");
+                while (rset.next()) {
+                    out.println(rset.getString(1)+"---"+rset.getString(2)+"---"+rset.getString(3)+"---"+rset.getString(4)+"<br/>");
+                }
+                con.cierraConexion();
+            } catch (Exception e) {
+
+            }
+        %>
     </body>
 </html>
 

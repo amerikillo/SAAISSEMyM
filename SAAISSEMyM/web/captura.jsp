@@ -555,12 +555,16 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <!-- En duda -->
+                            <div id="imgCarga" class="text-center" style="display: none">
+                                <img src="imagenes/ajax-loader-1.gif" />
+                            </div>
                             <%
                                 if (Cuenta == 0) {
                             %>
-                            <button class="btn btn-block btn-primary" type="submit" name="accion" value="capturar" onclick="return (validaCapturaVacios());">Capturar</button>
+                            <img />
+                            <button class="btn btn-block btn-primary" type="submit" name="accion" id="accion" value="capturar" onclick="return (validaCapturaVacios());">Capturar</button>
                             <%} else {%>
-                            <button class="btn btn-block btn-primary" type="submit" name="accion" value="capturarcb" onclick="return (validaCapturaVacioscb());">Capturar</button>
+                            <button class="btn btn-block btn-primary" type="submit" name="accion" id="accion" value="capturarcb" onclick="return (validaCapturaVacioscb());">Capturar</button>
                             <%}%>
                             <!-- En duda -->
                         </div>
@@ -661,13 +665,26 @@
         <script src="js/bootstrap-datepicker.js"></script>
         <script src="js/funcIngresos.js"></script>
 
+<<<<<<< HEAD
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/jquery-ui-1.10.3.custom.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+
+<script>
+                    $('#formulario1').submit(function () {
+                        document.getElementById('imgCarga').style.display = "block";
+                        $('#accion').css('display', 'none');
+                    });
+=======
         <script>
 
+>>>>>>> FETCH_HEAD
 
                     var formatNumber = {
                         separador: ",", // separador para los miles
                         sepDecimal: '.', // separador para los decimales
-                        formatear: function(num) {
+                        formatear: function (num) {
                             num += '';
                             var splitStr = num.split('.');
                             var splitLeft = splitStr[0];
@@ -678,7 +695,7 @@
                             }
                             return this.simbol + splitLeft + splitRight;
                         },
-                        new : function(num, simbol) {
+                        new : function (num, simbol) {
                             this.simbol = simbol || '';
                             return this.formatear(num);
                         }
@@ -739,7 +756,7 @@
                         document.getElementById('TarimasC').focus();
                     }
 
-                    $(function() {
+                    $(function () {
                         var availableTags = [
             <%
                 try {
@@ -757,7 +774,7 @@
                             source: availableTags
                         });
                     });
-                    $(function() {
+                    $(function () {
                         var availableTags = [
             <%
                 try {
@@ -1005,6 +1022,7 @@
                         if ($("#folio_remi").val() == "") {
                             missinginfo += "\n El campo Folio Remisión no debe de estar vacío";
                         }
+
                         if ($("#orden").val() == "") {
                             missinginfo += "\n El campo Número Compra no debe de estar vacío";
                         }
@@ -1046,12 +1064,9 @@
                             }
                             return true;
                         }
-
-
                     }
                     function validaCapturaVacioscb() {
-                        var cv = $("#clave1").val();
-
+                        /*var cv = $("#clave1").val();*/
                         var missinginfo = "";
                         if ($("#folio_remi").val() == "") {
                             missinginfo += "\n El campo Folio Remisión no debe de estar vacío";
@@ -1084,23 +1099,19 @@
                             var caja = parseInt(0);
                         }
 
-                        var total = (caja * piezas) + resto;
-
                         if (missinginfo != "") {
                             missinginfo = "\n TE HA FALTADO INTRODUCIR LOS SIGUIENTES DATOS PARA ENVIAR PETICIÓN DE SOPORTE:\n" + missinginfo + "\n\n ¡INGRESA LOS DATOS FALTANTES Y TRATA OTRA VEZ!\n";
                             alert(missinginfo);
 
                             return false;
                         } else {
-                            if (parseInt(total) === 0) {
+                            if (parseInt(caja) === 0) {
                                 missinginfo = "\n El total de piezas no puede ser \'0\'";
                                 alert(missinginfo);
                                 return false;
                             }
                             return true;
                         }
-
-
                     }
                     function mueveReloj() {
                         momentoActual = new Date()

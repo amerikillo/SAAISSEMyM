@@ -62,14 +62,14 @@ public class Facturacion extends HttpServlet {
                 con.conectar();
                 String[] claveschk = request.getParameterValues("chkId");
                 for (int i = 0; i < claveschk.length; i++) {
-                    con.insertar("update tb_facttemp set F_StsFact='1' WHERE F_Id= '" + claveschk[i] + "'");
+                    con.insertar("update tb_facttemp set F_StsFact='4', F_User='" + sesion.getAttribute("nombre") + "' WHERE F_Id= '" + claveschk[i] + "'");
                     con.insertar("insert into tb_regvalida values ('" + claveschk[i] + "','" + sesion.getAttribute("nombre") + "',0)");
                 }
                 con.cierraConexion();
 
                 sesion.setAttribute("Nombre", request.getParameter("Nombre"));
                 out.println("<script>alert('Claves Validadas Correctamente')</script>");
-                out.println("<script>window.location='validacionSurtido.jsp'</script>");
+                out.println("<script>window.location='remisionarCamion.jsp'</script>");
             }
             if (request.getParameter("accion").equals("actualizarCBAuditor")) {
                 try {
@@ -115,7 +115,7 @@ public class Facturacion extends HttpServlet {
             if (request.getParameter("accion").equals("validaRegistro")) {
                 try {
                     con.conectar();
-                    con.insertar("update tb_facttemp set F_StsFact='1' WHERE F_Id= '" + request.getParameter("folio") + "'");
+                    con.insertar("update tb_facttemp set F_StsFact='4', F_User='" + sesion.getAttribute("nombre") + "' WHERE F_Id= '" + request.getParameter("folio") + "'");
                     con.insertar("insert into tb_regvalida values ('" + request.getParameter("folio") + "','" + sesion.getAttribute("nombre") + "',0)");
                     con.cierraConexion();
                 } catch (Exception e) {
@@ -123,7 +123,7 @@ public class Facturacion extends HttpServlet {
                 }
                 sesion.setAttribute("Nombre", request.getParameter("Nombre"));
                 out.println("<script>alert('Clave Validada Correctamente')</script>");
-                out.println("<script>window.location='validacionSurtido.jsp'</script>");
+                out.println("<script>window.location='remisionarCamion.jsp'</script>");
             }
             if (request.getParameter("accion").equals("EliminaConcentrado")) {
                 try {
