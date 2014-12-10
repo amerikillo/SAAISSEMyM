@@ -214,11 +214,7 @@
         </div>
         <%@include file="../jspf/piePagina.jspf" %>
         <!-- 
-<<<<<<< HEAD
     ================================================== -->
-=======
-   ================================================== -->
->>>>>>> FETCH_HEAD
         <!-- Se coloca al final del documento para que cargue mas rapido -->
         <!-- Se debe de seguir ese orden al momento de llamar los JS -->
         <script src="js/jquery-1.9.1.js"></script>
@@ -226,33 +222,12 @@
         <script src="js/jquery-ui-1.10.3.custom.js"></script>
         <script src="js/funcIngresos.js"></script>
         <script>
-<<<<<<< HEAD
                                 function justNumbers(e)
                                 {
                                     var keynum = window.event ? window.event.keyCode : e.which;
                                     if ((keynum === 8) || (keynum === 46))
                                         return true;
                                     return /\d/.test(String.fromCharCode(keynum));
-=======
-                            function justNumbers(e)
-                            {
-                                var keynum = window.event ? window.event.keyCode : e.which;
-                                if ((keynum === 8) || (keynum === 46))
-                                    return true;
-                                return /\d/.test(String.fromCharCode(keynum));
-                            }
-
-                            function cambiaLoteCadu(elemento) {
-                                var indice = elemento.selectedIndex;
-                                document.getElementById('SelectCadu').selectedIndex = indice;
-                            }
-
-                            function validaBuscar() {
-                                var Unidad = document.getElementById('ClaCli').value;
-                                if (Unidad === "") {
-                                    alert('Seleccione Unidad');
-                                    return false;
->>>>>>> FETCH_HEAD
                                 }
 
                                 function cambiaLoteCadu(elemento) {
@@ -296,12 +271,5 @@
         </script>
     </body>
 
-<<<<<<< HEAD
-=======
-                            }
-        </script>
-    </body>
-
->>>>>>> FETCH_HEAD
 </html>
 

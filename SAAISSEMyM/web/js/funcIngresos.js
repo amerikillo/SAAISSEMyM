@@ -5,16 +5,16 @@
  */
 
 
-$('#selectClave').keyup(function () {
+$('#selectClave').keyup(function() {
     var descripcion = $('#selectClave').val();
     $('#selectClave').autocomplete({
         source: "/SAAISSEMyM/JQIngresos?accion=buscaClave&clave=" + descripcion,
         minLenght: 2,
-        select: function (event, ui) {
+        select: function(event, ui) {
             $('#selectClave').val(ui.item.F_Clave);
             return false;
         }
-    }).data('ui-autocomplete')._renderItem = function (ul, item) {
+    }).data('ui-autocomplete')._renderItem = function(ul, item) {
         return $('<li>')
                 .data('ui-autocomplete-item', item)
                 .append('<a>' + item.F_Clave + '</a>')
@@ -23,38 +23,21 @@ $('#selectClave').keyup(function () {
 });
 
 
-
-$('#clave').keyup(function () {
-    var descripcion = $('#clave').val();
-    $('#clave').autocomplete({
-        source: "/SAAISSEMyM/JQIngresos?accion=buscaClaveTodas&clave=" + descripcion,
-        minLenght: 2,
-        select: function (event, ui) {
-            $('#clave').val(ui.item.F_ClaPro);
-            return false;
-        }
-    }).data('ui-autocomplete')._renderItem = function (ul, item) {
-        return $('<li>')
-                .data('ui-autocomplete-item', item)
-                .append('<a>' + item.F_ClaPro + '</a>')
-                .appendTo(ul);
-    };
-});
-
-
-$('#ClaPro').keyup(function () {
+$('#ClaPro').keyup(function() {
     var descripcion = $('#ClaPro').val();
     $('#ClaPro').autocomplete({
         source: "/SAAISSEMyM/JQIngresos?accion=buscaClaveTodas&clave=" + descripcion,
         minLenght: 2,
-        select: function (event, ui) {
+        select: function(event, ui) {
             $('#ClaPro').val(ui.item.F_ClaPro);
             return false;
         }
-    }).data('ui-autocomplete')._renderItem = function (ul, item) {
+    }).data('ui-autocomplete')._renderItem = function(ul, item) {
         return $('<li>')
                 .data('ui-autocomplete-item', item)
                 .append('<a>' + item.F_ClaPro + '</a>')
                 .appendTo(ul);
     };
 });
+
+                             
