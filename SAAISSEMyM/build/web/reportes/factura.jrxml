@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d36d56d-e705-43d8-bec6-461dd4e714a4">
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="430"/>
+	<property name="ireport.x" value="2"/>
+	<property name="ireport.y" value="146"/>
 	<parameter name="Folfact" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT DISTINCT
@@ -135,26 +135,12 @@ ORDER BY
 				<text><![CDATA[FOLIO:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="c27b3cb2-5b49-42d7-8b6e-0eeb56115486" x="188" y="30" width="184" height="20"/>
-				<textElement>
-					<font fontName="SansSerif"/>
-				</textElement>
-				<text><![CDATA[CONTROL DE ALMACÉN Y ABASTO]]></text>
-			</staticText>
-			<staticText>
 				<reportElement uuid="bbe4a43b-0a00-4c22-8913-ec6c4df8ffe9" x="10" y="50" width="214" height="11"/>
 				<textElement>
 					<font fontName="SansSerif" size="8"/>
 				</textElement>
 				<text><![CDATA[PROYECTO: ISSEMyM]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement uuid="df805613-084e-4635-84ef-0b7a9f059437" x="498" y="61" width="74" height="11"/>
-				<textElement textAlignment="Right">
-					<font fontName="SansSerif" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{F_FecEnt}]]></textFieldExpression>
-			</textField>
 			<textField isStretchWithOverflow="true" pattern="00000">
 				<reportElement uuid="3b3f968c-19a7-4dd5-8f92-1bc2c6ba4e5f" x="498" y="50" width="74" height="11"/>
 				<textElement textAlignment="Right">
@@ -167,14 +153,7 @@ ORDER BY
 				<textElement textAlignment="Center">
 					<font fontName="SansSerif"/>
 				</textElement>
-				<text><![CDATA[GNK Logística S.A. de C.V.]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="cbf4da09-a22e-4794-b4f7-e545305d4278" mode="Opaque" x="401" y="61" width="97" height="11" forecolor="#000000" backcolor="#FFFFFF"/>
-				<textElement textAlignment="Right">
-					<font fontName="SansSerif" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[FECHA DE ENTREGA:]]></text>
+				<text><![CDATA[GNKL CD Lerma Park]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="83580f10-239f-4474-871d-820c698eb6c9" x="90" y="-60" width="198" height="20"/>
@@ -193,7 +172,7 @@ ORDER BY
 			<staticText>
 				<reportElement uuid="9409d028-3f27-418c-88cc-9b4d57094ddf" x="188" y="13" width="184" height="17"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[CEDIS Lerma Park]]></text>
+				<text><![CDATA[]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="448d2aee-a3d1-4def-9e18-6a8315075829" x="10" y="61" width="112" height="11"/>
@@ -215,6 +194,20 @@ ORDER BY
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{F_Req}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bbaded5d-90cb-4843-8b4c-a0a34ee16569" mode="Opaque" x="400" y="30" width="130" height="13" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="eb62f1ec-1570-4c9a-9b60-e0225fcb6fb8" mode="Opaque" x="530" y="30" width="40" height="13" backcolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -376,39 +369,39 @@ ORDER BY
 		<band height="7"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="51">
-			<textField>
-				<reportElement uuid="90da2b7c-eec7-43b6-bc78-a5f7ee2f0d56" mode="Opaque" x="400" y="2" width="130" height="13" backcolor="#FFFFFF"/>
-				<textElement textAlignment="Right">
-					<font fontName="SansSerif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement uuid="0ebb5cf6-b2fa-4cab-bcb9-bb8195cf26a6" mode="Opaque" x="530" y="2" width="40" height="13" backcolor="#FFFFFF"/>
+		<band height="23">
+			<staticText>
+				<reportElement uuid="3209b496-a3fb-444a-be36-1773458d1b60" x="0" y="0" width="375" height="12"/>
 				<textElement>
-					<font fontName="SansSerif"/>
+					<font size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[PROHIBIDA SU REPRODUCCIÓN PARCIAL O TOTAL, SI REQUIERE LA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="479a3b16-c27e-4065-ae8e-aa12a744894c" x="0" y="7" width="375" height="12"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[INFORMACION RECURRA CON EL POSEEDOR DEL DOCUMENTO ORIGINAL]]></text>
+			</staticText>
 		</band>
 	</pageFooter>
 	<lastPageFooter>
-		<band height="44">
-			<textField>
-				<reportElement uuid="bbaded5d-90cb-4843-8b4c-a0a34ee16569" mode="Opaque" x="401" y="1" width="130" height="13" backcolor="#FFFFFF"/>
-				<textElement textAlignment="Right">
-					<font fontName="SansSerif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement uuid="eb62f1ec-1570-4c9a-9b60-e0225fcb6fb8" mode="Opaque" x="531" y="1" width="40" height="13" backcolor="#FFFFFF"/>
+		<band height="21">
+			<staticText>
+				<reportElement uuid="52e3cf4c-7cac-4fdf-ba88-736f68abc9be" x="0" y="0" width="375" height="12"/>
 				<textElement>
-					<font fontName="SansSerif"/>
+					<font size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[PROHIBIDA SU REPRODUCCIÓN PARCIAL O TOTAL, SI REQUIERE LA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d862acad-d1d0-430f-a525-627a3452f5d7" x="0" y="8" width="375" height="12"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[INFORMACION RECURRA CON EL POSEEDOR DEL DOCUMENTO ORIGINAL]]></text>
+			</staticText>
 		</band>
 	</lastPageFooter>
 	<summary>
@@ -443,11 +436,11 @@ ORDER BY
 				<reportElement uuid="dca215c6-8534-4948-bc3c-61275c6d3dab" x="3" y="0" width="568" height="1" forecolor="#666666"/>
 			</line>
 			<staticText>
-				<reportElement uuid="9beb52cf-c0c3-4382-bbc1-339dfdd1a720" x="204" y="197" width="168" height="22"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement uuid="9beb52cf-c0c3-4382-bbc1-339dfdd1a720" x="204" y="197" width="168" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[NOMBRE Y FIRMA DEL RESP. DE PUNTO DE ENTREGA]]></text>
+				<text><![CDATA[RESP. DE PUNTO DE ENTREGA]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="8ff01abb-a41b-43b6-a891-904a2768cda9" x="204" y="133" width="168" height="14"/>
@@ -477,36 +470,11 @@ ORDER BY
 				</textElement>
 				<textFieldExpression><![CDATA[$F{F_NomCli}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement uuid="a1de7be3-4267-4801-840c-fa295be70da8" x="390" y="133" width="168" height="14"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[NOMBRE, PUESTO Y FIRMA]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="342c1c64-1dcb-44b3-a25f-462bdb1d4391" x="390" y="113" width="168" height="25"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[NOMBRE Y FIRMA DE QUIEN ENTREGA POR GNKL]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="dde08688-aebf-4528-be54-effe322ec0cd" x="407" y="238" width="144" height="14"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Sello de Conformidad]]></text>
-			</staticText>
-			<line>
-				<reportElement uuid="000ac4a3-b87a-476c-8526-2c7f3b4d5d09" x="408" y="236" width="143" height="1"/>
-			</line>
 			<line>
 				<reportElement uuid="5df1e76d-e03e-4dd9-b2bd-d03fdc4c1859" x="16" y="112" width="168" height="1"/>
 			</line>
 			<line>
 				<reportElement uuid="a9e4dcd9-49eb-4bf5-9f49-18cff529d366" x="204" y="113" width="168" height="1"/>
-			</line>
-			<line>
-				<reportElement uuid="233b26c1-eaf9-4ea1-86b3-f61408f464c0" x="390" y="112" width="168" height="1"/>
 			</line>
 			<line>
 				<reportElement uuid="9e10efb3-17cf-4b0c-991e-73157e4c4bc1" x="204" y="196" width="168" height="1"/>
@@ -525,9 +493,33 @@ ORDER BY
 				</textElement>
 				<textFieldExpression><![CDATA[$F{F_Obser}]]></textFieldExpression>
 			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="df805613-084e-4635-84ef-0b7a9f059437" x="447" y="101" width="74" height="11"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_FecEnt}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="cbf4da09-a22e-4794-b4f7-e545305d4278" mode="Opaque" x="433" y="116" width="97" height="11" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA DE ENTREGA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="713ed8e5-167d-42f5-b873-68e5b755a43a" x="204" y="207" width="168" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nombre, Puesto, Firma y Sello]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="47de8204-3169-404f-b97b-8ecf77d9477f" x="398" y="113" width="168" height="1"/>
+			</line>
 		</band>
 	</summary>
 	<noData>
-		<band height="10"/>
+		<band height="27"/>
 	</noData>
 </jasperReport>

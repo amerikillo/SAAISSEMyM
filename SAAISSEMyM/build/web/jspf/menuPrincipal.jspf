@@ -27,10 +27,10 @@
                         <li class="divider"></li>
                         <li><a href="hh/compraAuto3.jsp">HANDHELD | Entrada Automática OC</a></li>
                         <li class="divider"></li-->
-                        <%
-                            }
-                            if (tipo.equals("2") || tipo.equals("3") || tipo.equals("5")) {
-                        %>
+                            <%
+                                }
+                                if (tipo.equals("2") || tipo.equals("3") || tipo.equals("5")) {
+                            %>
                         <li><a href="/SAAISSEMyM/verificarCompraAuto.jsp">Verificar Remisión</a></li>
                             <%
                                 }
@@ -59,10 +59,11 @@
                             <%
                                 }
                             %>
-                        <!--li><a href="#"  onclick="window.open('/SAAISSEMyM/Ubicaciones/index_Marbete.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Marbete de Salida</a></li>
-                        <li><a href="#"  onclick="window.open('/SAAISSEMyM/Ubicaciones/index_Marbete_resto.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Marbete de Resto</a></li-->
+                        <li><a href="#"  onclick="window.open('/SAAISSEMyM/modula/avisosIngreso.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Modula - Avisos de Ingreso</a></li>
+                        <!--li><a href="#"  onclick="window.open('/SAAISSEMyM/Ubicaciones/index_Marbete_resto.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Marbete de Resto</a></li-->
                         <!--li><a href="#"  onclick="window.open('verDevolucionesEntrada.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Imprimir Devoluciones</a></li>
                         <li><a href="#"  onclick="window.open('devolucionesInsumo.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Devolver</a></li-->
+                    
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -80,8 +81,9 @@
                             if (tipo.equals("5") || tipo.equals("3") || tipo.equals("7") || tipo.equals("2")) {
                         %>
                         <li><a href="/SAAISSEMyM/facturacionManual.jsp">Facturación Manual</a></li>
-                        <li><a href="/SAAISSEMyM/validacionSurtido.jsp">Validación Surtido</a></li>
-                        <li><a href="/SAAISSEMyM/validacionAuditores.jsp">Validación Auditores</a></li>
+                        <!--li><a href="/SAAISSEMyM/validacionSurtido.jsp">Validación Surtido</a></li>
+                        <li><a href="/SAAISSEMyM/validacionAuditores.jsp">Validación Auditores</a></li-->
+                        <li><a href="#"  onclick="window.open('modula/modulaHistorico.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Histórico Modula</a></li>
                             <%
                                 }
                             %>
@@ -119,7 +121,9 @@
                     <ul class="dropdown-menu">
                         <li><a href="#" onclick="window.open('/SAAISSEMyM/medicamento.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Catálogo de Medicamento</a></li>
                         <li><a href="#" onclick="window.open('/SAAISSEMyM/catalogo.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Catálogo de Proveedores</a></li>
-                        <li><a href="#" onclick="window.open('/SAAISSEMyM/marcas.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Catálogo de Marcas</a></li>
+                        <li><a href="#" onclick="window.open('/SAAISSEMyM/marcas.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Catálogo de Marcas</a></li><li><a href="#" onclick="window.open('/SAAISSEMyM/marcas.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Catálogo de Marcas</a></li>
+                        <li><a href="#" onclick="window.open('/SAAISSEMyM/modula/catalogoCB.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Catálogo de CB</a></li>
+
                     </ul>
                 </li>
                 <!--li class="dropdown">

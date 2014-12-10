@@ -44,6 +44,8 @@ Temporary Items
 .apdisk
 /SAAISSEMyM/dist/
 /SAAISSEMyM/build/
+SAAISSEMyM/dist/
+SAAISSEMyM/build/
 
 *.class
 *.war

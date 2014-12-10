@@ -170,7 +170,7 @@
                         int banBtn = 0;
                         try {
                             con.conectar();
-                            ResultSet rset = con.consulta("SELECT l.F_ClaPro, l.F_ClaLot, DATE_FORMAT(l.F_FecCad, '%d/%m/%Y'), f.F_Cant, l.F_Ubica, f.F_IdFact, m.F_ClaSap, mar.F_DesMar FROM tb_facttemp f, tb_lote l, tb_medica m, tb_marca mar WHERE m.F_ClaPro = l.F_ClaPro and l.F_ClaMar = mar.F_ClaMar and f.F_IdLot = l.F_IdLote and F_ClaCli = '" + ClaCli + "' and F_StsFact=3;");
+                            ResultSet rset = con.consulta("SELECT l.F_ClaPro, l.F_ClaLot, DATE_FORMAT(l.F_FecCad, '%d/%m/%Y'), f.F_Cant, l.F_Ubica, f.F_IdFact, m.F_ClaSap, mar.F_DesMar, f.F_Id FROM tb_facttemp f, tb_lote l, tb_medica m, tb_marca mar WHERE m.F_ClaPro = l.F_ClaPro and l.F_ClaMar = mar.F_ClaMar and f.F_IdLot = l.F_IdLote and F_ClaCli = '" + ClaCli + "' and F_StsFact=3;");
                             while (rset.next()) {
                                 banBtn = 1;
                     %>
@@ -183,7 +183,7 @@
                         <td><%=rset.getString("F_DesMar")%></td>
                         <td><%=rset.getString(4)%></td>
                         <td>
-                            <button class="btn btn-block btn-danger" name="accionEliminar" value="<%=rset.getString("F_IdFact")%>" onclick="return confirm('Seguro que desea eliminar esta clave?')"><span class="glyphicon glyphicon-remove"></span></button>
+                            <button class="btn btn-block btn-danger" name="accionEliminar" value="<%=rset.getString("F_Id")%>" onclick="return confirm('Seguro que desea eliminar esta clave?')"><span class="glyphicon glyphicon-remove"></span></button>
                         </td>
                     </tr>
                     <%
@@ -214,7 +214,11 @@
         </div>
         <%@include file="../jspf/piePagina.jspf" %>
         <!-- 
+<<<<<<< HEAD
+    ================================================== -->
+=======
    ================================================== -->
+>>>>>>> FETCH_HEAD
         <!-- Se coloca al final del documento para que cargue mas rapido -->
         <!-- Se debe de seguir ese orden al momento de llamar los JS -->
         <script src="js/jquery-1.9.1.js"></script>
@@ -222,6 +226,14 @@
         <script src="js/jquery-ui-1.10.3.custom.js"></script>
         <script src="js/funcIngresos.js"></script>
         <script>
+<<<<<<< HEAD
+                                function justNumbers(e)
+                                {
+                                    var keynum = window.event ? window.event.keyCode : e.which;
+                                    if ((keynum === 8) || (keynum === 46))
+                                        return true;
+                                    return /\d/.test(String.fromCharCode(keynum));
+=======
                             function justNumbers(e)
                             {
                                 var keynum = window.event ? window.event.keyCode : e.which;
@@ -240,36 +252,56 @@
                                 if (Unidad === "") {
                                     alert('Seleccione Unidad');
                                     return false;
+>>>>>>> FETCH_HEAD
                                 }
 
-                                var FechaEnt = document.getElementById('FechaEnt').value;
-                                if (FechaEnt === "") {
-                                    alert('Seleccione Fecha de Entrega');
-                                    return false;
-                                }
-                                var clave = document.getElementById('ClaPro').value;
-                                if (clave === "") {
-                                    alert('Escriba una Clave');
-                                    return false;
-                                }
-                            }
-
-
-                            function validaSeleccionar() {
-                                var DesSel = document.getElementById('DesSel').value;
-                                if (DesSel === "") {
-                                    alert('Favor de Capturar Toda la información');
-                                    return false;
-                                }
-                                var cantidad = document.getElementById('Cantidad').value;
-                                if (cantidad === "") {
-                                    alert('Escriba una cantidad');
-                                    return false;
+                                function cambiaLoteCadu(elemento) {
+                                    var indice = elemento.selectedIndex;
+                                    document.getElementById('SelectCadu').selectedIndex = indice;
                                 }
 
+                                function validaBuscar() {
+                                    var Unidad = document.getElementById('ClaCli').value;
+                                    if (Unidad === "") {
+                                        alert('Seleccione Unidad');
+                                        return false;
+                                    }
+
+                                    var FechaEnt = document.getElementById('FechaEnt').value;
+                                    if (FechaEnt === "") {
+                                        alert('Seleccione Fecha de Entrega');
+                                        return false;
+                                    }
+                                    var clave = document.getElementById('ClaPro').value;
+                                    if (clave === "") {
+                                        alert('Escriba una Clave');
+                                        return false;
+                                    }
+                                }
+
+
+                                function validaSeleccionar() {
+                                    var DesSel = document.getElementById('DesSel').value;
+                                    if (DesSel === "") {
+                                        alert('Favor de Capturar Toda la información');
+                                        return false;
+                                    }
+                                    var cantidad = document.getElementById('Cantidad').value;
+                                    if (cantidad === "") {
+                                        alert('Escriba una cantidad');
+                                        return false;
+                                    }
+
+                                }
+        </script>
+    </body>
+
+<<<<<<< HEAD
+=======
                             }
         </script>
     </body>
 
+>>>>>>> FETCH_HEAD
 </html>
 

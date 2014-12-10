@@ -145,6 +145,8 @@
     if (Cadu == null) {
         Cadu = "";
     }
+
+
 %>
 <html>
     <head>
@@ -158,6 +160,9 @@
         <!---->
         <!---->
         <title>SIALSS</title>
+
+        <script>
+        </script>
     </head>
     <body>
         <div class="container">
@@ -174,8 +179,7 @@
                         <select class="form-control" name="Proveedor" id="Proveedor" onchange="SelectProve(this.form);
                                 document.getElementById('Fecha').focus()">
                             <option value="">--Proveedor--</option>
-                            <%
-                                try {
+                            <%                                try {
                                     con.conectar();
                                     ResultSet rset = con.consulta("select F_ClaProve, F_NomPro from tb_proveedor order by F_NomPro");
                                     while (rset.next()) {
@@ -235,7 +239,7 @@
                 </div>
                 <br/>
             </form>
-            <form action="CompraAutomatica" method="get" name="formulario1">
+            <form action="CompraAutomatica" method="get" name="formulario1" id="FormInsumo">
                 <br/>
                 <%
                     try {
@@ -250,8 +254,13 @@
                             <div class="row">
                                 <h4 class="col-sm-3">Folio Orden de Compra:</h4>
                                 <div class="col-sm-2"><input class="form-control" value="<%=rset.getString(1)%>" readonly="" name="folio" id="folio" onkeypress="return tabular(event, this)" /></div>
+<<<<<<< HEAD
+                                <h4 class="col-sm-2 text-right">Número de Tarima:</h4>
+                                <div class="col-sm-2"><input class="form-control" value="<%=folioRemi%>" name="folioRemi" id="folioRemi" onkeypress="return tabular(event, this)" /></div>
+=======
                                 <h4 class="col-sm-2 text-right">Folio de Remisión:</h4>
                                 <div class="col-sm-2"><input class="form-control" value="Prueba<%//=folioRemi%>" name="folioRemi" id="folioRemi" onkeypress="return tabular(event, this)" /></div>
+>>>>>>> FETCH_HEAD
                                 <div class="col-sm-2">
                                     <%
                                         if (tipo.equals("2") || tipo.equals("3") || tipo.equals("5")) {
@@ -329,7 +338,7 @@
 
                             %>
                             <h4 class="bg-primary" style="padding: 5px">CLAVE | <%=rset2.getString(1)%> <%=rset2.getString(2)%></h4>
-                            <div class="table-responsive">
+                            <div class="">
                                 <table class="table table-bordered table-condensed table-striped">
                                     <tr>
                                         <td><strong>SICCAL</strong></td>
@@ -646,6 +655,9 @@
                                     if (tipo.equals("2") || tipo.equals("3") || tipo.equals("1")) {
                                 %>
                                 <div class="col-sm-4">
+                                    <div id="imgCarga" style="display: none">
+                                        <img src="imagenes/ajax-loader-1.gif" />
+                                    </div>
                                     <button class="btn btn-block btn-primary" name="accion" id="accion" value="guardarLote" onclick="return validaCompra();" >Guardar Lote</button>
                                 </div>
                                 <%
@@ -682,7 +694,6 @@
                     }
                 %>
             </form>
-
             <div class="table-responsive">
                 <table class="table table-bordered table-striped" style="width: 100%">
                     <tr>
@@ -744,7 +755,7 @@
 
                         <td colspan="12">
                             <div class="col-lg-3 col-lg-offset-6">
-                                <form action="nuevoAutomaticaLotes" method="post">
+                                <form action="nuevoAutomaticaLotes" method="post" id="TablaScroll">
                                     <input name="fol_gnkl" type="text" style="" class="hidden" value="<%=noCompra%>" />
                                     <button  value="Eliminar" name="accion" class="btn btn-danger btn-block" onclick="return confirm('¿Seguro que desea eliminar la compra?');">Cancelar Compra</button>
                                 </form>
@@ -970,19 +981,17 @@
         <script src="js/jquery-ui-1.10.3.custom.js"></script>
         <script src="js/bootstrap-datepicker.js"></script>
         <script src="js/funcIngresos.js"></script>
+
         <script type="text/javascript">
-                                /*$('#todosChk').click(function(event) {
-                                 alert('hola');
-                                 if (this.checked) {
-                                 $(':chkCancela').each(function() {
-                                 this.checked = true;
-                                 });
-                                 } else {
-                                 $(':chkCancela').each(function() {
-                                 this.checked = false;
-                                 });
-                                 }
-                                 });*/
+
+                                $(window).scrollTop(400);
+
+                                $('#FormInsumo').submit(function () {
+
+                                    document.getElementById('imgCarga').style.display = "block";
+                                    $('#accion').css('display', 'none');
+                                });
+
                                 function checkea(obj) {
                                     var cbs = document.getElementsByName('chkCancela');
                                     if (obj.checked) {
@@ -1026,7 +1035,7 @@
                                     //return false;
                                 }
 
-                                $(function() {
+                                $(function () {
                                     $("#Fecha").datepicker();
                                     $("#Fecha").datepicker('option', {dateFormat: 'dd/mm/yy'});
                                 });
@@ -1073,7 +1082,7 @@
                                 var formatNumber = {
                                     separador: ",", // separador para los miles
                                     sepDecimal: '.', // separador para los decimales
-                                    formatear: function(num) {
+                                    formatear: function (num) {
                                         num += '';
                                         var splitStr = num.split('.');
                                         var splitLeft = splitStr[0];
@@ -1084,7 +1093,7 @@
                                         }
                                         return this.simbol + splitLeft + splitRight;
                                     },
-                                    new : function(num, simbol) {
+                                    new : function (num, simbol) {
                                         this.simbol = simbol || '';
                                         return this.formatear(num);
                                     }
@@ -1136,7 +1145,6 @@
                                     document.getElementById('Cajas').value = formatNumber.new(totalCajas);
                                     var totalPiezas = parseInt(PzsxCC) * parseInt(totalCajas);
                                     document.getElementById('Piezas').value = formatNumber.new(totalPiezas + parseInt(Resto));
-
                                 }
 
                                 function validaCadu() {
@@ -1152,7 +1160,7 @@
                                             return false;
                                         } else {
                                             var dtFechaActual = new Date();
-                                            var sumarDias = parseInt(276);
+                                            var sumarDias = parseInt(30);
                                             dtFechaActual.setDate(dtFechaActual.getDate() + sumarDias);
                                             var fechaSpl = cad.split("/");
                                             var Caducidad = fechaSpl[2] + "-" + fechaSpl[1] + "-" + fechaSpl[0];
@@ -1168,7 +1176,6 @@
                                 }
 
                                 function validaCompra() {
-
                                     var folioRemi = document.getElementById('folioRemi').value;
                                     if (folioRemi === "") {
                                         alert("Falta Folio de Remisión");
@@ -1204,7 +1211,7 @@
                                         return false;
                                     } else {
                                         var dtFechaActual = new Date();
-                                        var sumarDias = parseInt(270);
+                                        var sumarDias = parseInt(30);
                                         dtFechaActual.setDate(dtFechaActual.getDate() + sumarDias);
                                         var fechaSpl = cad.split("/");
                                         var Caducidad = fechaSpl[2] + "-" + fechaSpl[1] + "-" + fechaSpl[0];
