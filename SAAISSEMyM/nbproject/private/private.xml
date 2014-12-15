@@ -2,37 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-<<<<<<< Updated upstream
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/web/medicamento.jsp</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/src/java/servlets/Medicamentos.java</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/src/java/Modula/AbasteceModula.java</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/web/modula/conexionModula.jsp</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/web/hh/ingCantRedist.jsp</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/src/java/Inventario/Ubicaciones.java</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/web/modula/requerimentoModula.jsp</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/web/facturacionManual.jsp</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/src/java/Facturacion/FacturacionManual.java</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/src/java/Modula/RequerimientoModula.java</file>
-=======
-<<<<<<< Updated upstream
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/web/compraAuto2.jsp</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/web/jspf/menuPrincipal.jspf</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/web/reimpFactura.jsp</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/src/java/ISEM/CompraAutomatica.java</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/src/java/servlets/Altas_handheld.java</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/web/facturacionManual.jsp</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/web/facturacionManualSelecLote.jsp</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/web/captura.jsp</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/web/reimpFacturaComun.jsp</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/web/reimp_factura.jsp</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/web/hh/leerInsRedistClave.jsp</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/web/medicamento.jsp</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SAAISSEMyM/SAAISSEMyM/src/java/servlets/Altas.java</file>
-=======
-            <file>file:/Users/amerikillo/Github/SAAISSEMyM/SAAISSEMyM/web/reimp_marbete.jsp</file>
->>>>>>> Stashed changes
->>>>>>> Stashed changes
-        </group>
+        <group/>
     </open-files>
 </project-private>

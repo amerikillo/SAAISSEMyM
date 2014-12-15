@@ -396,6 +396,16 @@ public class FacturacionManual extends HttpServlet {
         }
         FolFact = FolioFactura + 1;
         con.actualizar("update tb_indice set F_IndGlobal='" + FolFact + "'");
+        ResultSet rset = con.consulta("select MAX(F_IdFact) from tb_facttemp");
+        int idMax = 0;
+        while (rset.next()) {
+            idMax = rset.getInt(1);
+        }
+        while (FolioFactura <= idMax) {
+            FolioFactura++;
+            FolFact = FolioFactura + 1;
+            con.actualizar("update tb_indice set F_IndGlobal='" + FolFact + "'");
+        }
         con.cierraConexion();
         return FolioFactura;
     }
