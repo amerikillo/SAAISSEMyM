@@ -84,7 +84,7 @@
                         <td><h4><%=rset.getString("F_FecCad")%></h4></td>
                         <td><h4><%=rset.getString("F_ClaSap")%></h4></td>
                         <td><h4><%=rset.getString("F_Cb")%></h4></td>
-                        <td><img src="../imagenes/cb/<%=rset.getString("F_Cb")%>.png" width="350 px" /></td>
+                        <td><img src="../imagenes/cb/<%=rset.getString("F_Cb")%>.png" width="350" /></td>
                     </tr>
                     <%   }
                             con.cierraConexion();

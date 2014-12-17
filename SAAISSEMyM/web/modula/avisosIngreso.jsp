@@ -71,21 +71,21 @@
                         con.conectar();
                         ResultSet rset = conModula.consulta("select RIG_RIGA, RIG_ARTICOLO, RIG_SUB1, RIG_SUB2, RIG_DSCAD, RIG_REQ_NOTE, RIG_STARIORD, RIG_QTAR, RIG_QTAI, RIG_QTAE, RIG_ORDINE from VIEW_MODULA_AVVISOINGRESO");
                         while (rset.next()) {
-                            String F_DesPro = "", estado="";
+                            String F_DesPro = "", estado = "";
                             ResultSet rset2 = con.consulta("select F_DesPro from tb_medica where F_ClaPro = '" + rset.getString("RIG_ARTICOLO") + "'");
                             while (rset2.next()) {
                                 F_DesPro = rset2.getString("F_DesPro");
                             }
-                            if (rset.getString("RIG_STARIORD").equals("W")){
+                            if (rset.getString("RIG_STARIORD").equals("W")) {
                                 estado = "En Espera";
                             }
-                            if (rset.getString("RIG_STARIORD").equals("I")){
+                            if (rset.getString("RIG_STARIORD").equals("I")) {
                                 estado = "Incompleto";
                             }
-                            if (rset.getString("RIG_STARIORD").equals("E")){
+                            if (rset.getString("RIG_STARIORD").equals("E")) {
                                 estado = "En Ejecución";
                             }
-                            if (rset.getString("RIG_STARIORD").equals("C")){
+                            if (rset.getString("RIG_STARIORD").equals("C")) {
                                 estado = "Completo";
                             }
                 %>
@@ -111,6 +111,54 @@
                     }
                 %>
             </tbody>
+            <hr/>
+        </table>
+        <table class="table table-bordered table-condensed table-striped" id="tablaMovMod2">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Ord - Remi</td>
+                    <td>Clave</td>
+                    <td>Lote</td>
+                    <td>Caducidad</td>
+                    <td>CB</td>
+                    <td>Estado</td>
+                    <td>Cant</td>
+                    <td>En ejecución</td>
+                    <td>Completado</td>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    try {
+                        conModula.conectar();
+                        con.conectar();
+                        ResultSet rset = conModula.consulta("select RIG_OPERAZIONE, RIG_ARTICOLO, RIG_SUB1, RIG_SUB2, RIG_QTAR, RIG_DSCAD, RIG_REQ_NOTE, RIG_ATTR1, RIG_ERRORE, RIG_HOSTINF from IMP_AVVISIINGRESSO");
+                        while (rset.next()) {
+                            String F_DesPro = "", estado = "";
+                            ResultSet rset2 = con.consulta("select F_DesPro from tb_medica where F_ClaPro = '" + rset.getString("RIG_ARTICOLO") + "'");
+                            while (rset2.next()) {
+                                F_DesPro = rset2.getString("F_DesPro");
+                            }
+                %>
+                <tr>
+                    <td title="<%=F_DesPro%>"><%=rset.getString("RIG_ARTICOLO")%></td>
+                    <td><%=rset.getString("RIG_SUB1")%></td>
+                    <td><%=df3.format(df2.parse(rset.getString("RIG_DSCAD")))%></td>
+                    <td><%=rset.getString("RIG_REQ_NOTE")%></td>
+                    <td><%=estado%></td>
+                    <td class="text-right"><%=formatter.format(rset.getInt("RIG_QTAR"))%></td>
+                </tr>
+                <%
+                        }
+                        con.cierraConexion();
+                        conModula.cierraConexion();
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        out.print(e.getMessage());
+                    }
+                %>
+            </tbody>
         </table>
     </body>
     <!-- ================================================== -->
@@ -124,6 +172,7 @@
     <script>
         $(document).ready(function () {
             $('#tablaMovMod').dataTable();
+            $('#tablaMovMod2').dataTable();
         });
     </script>
 </html>

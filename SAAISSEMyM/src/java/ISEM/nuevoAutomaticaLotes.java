@@ -223,7 +223,7 @@ public class nuevoAutomaticaLotes extends HttpServlet {
                     /*
                      *Para Abastecer modula
                      */
-                    modula.AbastoModula(F_OrdCom, F_FolRemi);
+                    //modula.AbastoModula(F_OrdCom, F_FolRemi);
                     /*
                     
                      */
@@ -403,7 +403,7 @@ public class nuevoAutomaticaLotes extends HttpServlet {
                     /*
                      * Aquí se debe de mandar a MODULA
                      */
-                    modula.AbastoModula(F_OrdCom, F_FolRemi);
+                    //modula.AbastoModula(F_OrdCom, F_FolRemi);
 
                     /*
                      *
