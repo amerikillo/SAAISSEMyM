@@ -142,7 +142,7 @@ public class nuevoAutomaticaLotes extends HttpServlet {
                         F_OrdCom = rsetDatos.getString("F_OrdCom");
                         F_Origen = Integer.parseInt(rsetDatos.getString("F_ClaOrg"));
                         F_User = rsetDatos.getString("F_User");
-                        String Ubicacion = "MODULA";
+                        String Ubicacion = "NUEVA";
 
                         ResultSet rset = con.consulta("select F_Tipo from tb_tipomed where F_ClaPro = '" + F_ClaPro + "'");
                         while (rset.next()) {
@@ -213,7 +213,7 @@ public class nuevoAutomaticaLotes extends HttpServlet {
                         FolMov = FolioMovi + 1;
                         con.actualizar("update tb_indice set F_IndMov='" + FolMov + "'");
                         //FIN CONSULTA MYSQL
-                        con.insertar("insert into tb_movinv values (0,curdate(),'" + F_IndCom + "','1', '" + F_ClaPro + "', '" + F_Piezas + "', '" + F_Costo + "', '" + F_ComTot + "' ,'1', '" + FolioLote + "', 'MODULA', '" + F_Provee + "',curtime(),'" + F_User + "') ");
+                        con.insertar("insert into tb_movinv values (0,curdate(),'" + F_IndCom + "','1', '" + F_ClaPro + "', '" + F_Piezas + "', '" + F_Costo + "', '" + F_ComTot + "' ,'1', '" + FolioLote + "', 'NUEVA', '" + F_Provee + "',curtime(),'" + F_User + "') ");
                         con.insertar("insert into tb_compra values (0,'" + F_IndCom + "','" + F_Provee + "','A',curdate(), '" + F_ClaPro + "', '" + F_Piezas + "', '" + F_Costo + "', '" + F_Caja + "', '0', '" + F_Tarimas + "', '" + F_ImpTo + "' ,'" + F_ComTot + "', '" + FolioLote + "', '" + F_FolRemi + "', '" + F_OrdCom + "', '" + F_Origen + "', '" + F_Cb + "', curtime(), '" + F_User + "','" + F_Obser + "','0') ");
 
                         FolioLote = "";
@@ -316,7 +316,7 @@ public class nuevoAutomaticaLotes extends HttpServlet {
                         F_OrdCom = rsetDatos.getString("F_OrdCom");
                         F_Origen = Integer.parseInt(rsetDatos.getString("F_ClaOrg"));
                         F_User = rsetDatos.getString("F_User");
-                        String Ubicacion = "MODULA";
+                        String Ubicacion = "NUEVA";
 
                         ResultSet rset = con.consulta("select F_Tipo from tb_tipomed where F_ClaPro = '" + F_ClaPro + "'");
                         while (rset.next()) {
@@ -393,7 +393,7 @@ public class nuevoAutomaticaLotes extends HttpServlet {
                         FolMov = FolioMovi + 1;
                         con.actualizar("update tb_indice set F_IndMov='" + FolMov + "'");
                         //FIN CONSULTA MYSQL
-                        con.insertar("insert into tb_movinv values (0,curdate(),'" + F_IndCom + "','1', '" + F_ClaPro + "', '" + F_Piezas + "', '" + F_Costo + "', '" + F_ComTot + "' ,'1', '" + FolioLote + "', 'MODULA', '" + F_Provee + "',curtime(),'" + F_User + "') ");
+                        con.insertar("insert into tb_movinv values (0,curdate(),'" + F_IndCom + "','1', '" + F_ClaPro + "', '" + F_Piezas + "', '" + F_Costo + "', '" + F_ComTot + "' ,'1', '" + FolioLote + "', 'NUEVA', '" + F_Provee + "',curtime(),'" + F_User + "') ");
                         con.insertar("insert into tb_compra values (0,'" + F_IndCom + "','" + F_Provee + "','A',curdate(), '" + F_ClaPro + "', '" + F_Piezas + "', '" + F_Costo + "', '" + F_Caja + "', '0', '" + F_Tarimas + "', '" + F_ImpTo + "' ,'" + F_ComTot + "', '" + FolioLote + "', '" + F_FolRemi + "', '" + F_OrdCom + "', '" + F_Origen + "', '" + F_Cb + "', curtime(), '" + F_User + "','" + F_Obser + "','0') ");
                         FolioLote = "";
                         FolioLoteSQL = "";
