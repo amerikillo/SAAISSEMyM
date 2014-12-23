@@ -133,21 +133,37 @@
                     try {
                         conModula.conectar();
                         con.conectar();
-                        ResultSet rset = conModula.consulta("select RIG_OPERAZIONE, RIG_ARTICOLO, RIG_SUB1, RIG_SUB2, RIG_QTAR, RIG_DSCAD, RIG_REQ_NOTE, RIG_ATTR1, RIG_ERRORE, RIG_HOSTINF from IMP_AVVISIINGRESSO");
+                        ResultSet rset = conModula.consulta("select RIG_RIGA, RIG_ARTICOLO, RIG_SUB1, RIG_SUB2, RIG_DSCAD, RIG_REQ_NOTE, RIG_STARIORD, RIG_QTAR, RIG_QTAI, RIG_QTAE, RIG_ORDINE from VIEW_MODULA_ORDINE_INGRESSO");
                         while (rset.next()) {
                             String F_DesPro = "", estado = "";
                             ResultSet rset2 = con.consulta("select F_DesPro from tb_medica where F_ClaPro = '" + rset.getString("RIG_ARTICOLO") + "'");
                             while (rset2.next()) {
                                 F_DesPro = rset2.getString("F_DesPro");
                             }
+                            if (rset.getString("RIG_STARIORD").equals("W")) {
+                                estado = "En Espera";
+                            }
+                            if (rset.getString("RIG_STARIORD").equals("I")) {
+                                estado = "Incompleto";
+                            }
+                            if (rset.getString("RIG_STARIORD").equals("E")) {
+                                estado = "En Ejecución";
+                            }
+                            if (rset.getString("RIG_STARIORD").equals("C")) {
+                                estado = "Completo";
+                            }
                 %>
                 <tr>
+                    <td><%=rset.getString("RIG_RIGA")%></td>
+                    <td><%=rset.getString("RIG_ORDINE")%></td>
                     <td title="<%=F_DesPro%>"><%=rset.getString("RIG_ARTICOLO")%></td>
                     <td><%=rset.getString("RIG_SUB1")%></td>
                     <td><%=df3.format(df2.parse(rset.getString("RIG_DSCAD")))%></td>
                     <td><%=rset.getString("RIG_REQ_NOTE")%></td>
                     <td><%=estado%></td>
                     <td class="text-right"><%=formatter.format(rset.getInt("RIG_QTAR"))%></td>
+                    <td class="text-right"><%=formatter.format(rset.getInt("RIG_QTAI"))%></td>
+                    <td class="text-right"><%=formatter.format(rset.getInt("RIG_QTAE"))%></td>
                 </tr>
                 <%
                         }

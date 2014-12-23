@@ -47,34 +47,34 @@ public class CorreoGeneraRemision {
             //message.addRecipient(Message.RecipientType.TO,new InternetAddress("anibal.rincon@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo
             message.addRecipient(Message.RecipientType.TO, new InternetAddress("americo.guzman@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo
             //message.addRecipient(Message.RecipientType.TO,new InternetAddress("omar_23sh@hotmail.com"));//Aqui se pone la direccion a donde se enviara el correo
-            /*message.addRecipient(Message.RecipientType.TO, new InternetAddress("yolanda.orozco@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo
-             message.addRecipient(Message.RecipientType.TO, new InternetAddress("oscar.arellano@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo
-             message.addRecipient(Message.RecipientType.TO, new InternetAddress("vicente.flores@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo
-             //message.addRecipient(Message.RecipientType.TO,new InternetAddress("javier.calero@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo
-             //message.addRecipient(Message.RecipientType.TO,new InternetAddress("mario.garcia@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo
-             //message.addRecipient(Message.RecipientType.TO,new InternetAddress("joseluis.chavez@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo*/
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress("yolanda.orozco@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress("elideth.martinez@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress("oscar.arellano@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress("vicente.flores@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress("estevan.vences@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo
+            //message.addRecipient(Message.RecipientType.TO,new InternetAddress("javier.calero@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo
+            //message.addRecipient(Message.RecipientType.TO,new InternetAddress("mario.garcia@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo
+            //message.addRecipient(Message.RecipientType.TO,new InternetAddress("joseluis.chavez@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo*/
             message.setSubject("Generación de Remisión / GNK Logística");
             System.out.println("Generación de Remisión / GNK Logística");
             String mensaje = "Folio Nuevo\nSe acaba de generar la siguiente Remisión: " + folio + "\n";
             try {
                 con.conectar();
-                ResultSet rset = con.consulta("SELECT c.F_OrdCom, c.F_FolRemi, p.F_NomPro, c.F_FecApl, c.F_User, F_ClaPro, SUM(F_CanCom) FROM tb_compra c, tb_proveedor p where c.F_ProVee = p.F_ClaProve AND c.F_ClaDoc = '" + folio + "' GROUP BY c.F_FolRemi ORDER BY c.F_ClaPro;");
+                ResultSet rset = con.consulta("SELECT * from facturas where F_ClaDoc = '" + folio + "' GROUP BY F_ClaDoc;");
                 while (rset.next()) {
-                    mensaje = mensaje + "Se acaba de enviar la siguiente orden de compra: " + rset.getString("F_OrdCom") + " con la remision: " + rset.getString("F_FolRemi") + "\n";
-                    mensaje = mensaje + "Proveedor: " + rset.getString("F_NomPro") + "\n"
-                            + "Fecha de Recepción: " + rset.getString("F_FecApl") + "\n"
-                            + "Orden capurada por: " + rset.getString("F_User") + "\n";
+                    mensaje = mensaje + "Distribuidor: " + rset.getString("F_NomCli") + "\n"
+                            + "Fecha de Entrega: " + rset.getString("F_FecEnt") + "\n";
                 }
                 con.cierraConexion();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            mensaje = mensaje + "Clave\t\t\tCantidad\n";
+            mensaje = mensaje + "Clave\t\t\tLote\t\t\tCaducidad\t\t\tCantidad\n";
             try {
                 con.conectar();
-                ResultSet rset = con.consulta("SELECT c.F_OrdCom, c.F_FolRemi, p.F_NomPro, c.F_FecApl, c.F_User, F_ClaPro, SUM(F_CanCom) as cantidad FROM tb_compra c, tb_proveedor p where c.F_ProVee = p.F_ClaProve AND c.F_ClaDoc = '" + folio + "';");
+                ResultSet rset = con.consulta("SELECT * from facturas where F_ClaDoc = '" + folio + "';");
                 while (rset.next()) {
-                    mensaje = mensaje + rset.getString("F_ClaPro") + "\t\t" + rset.getString("cantidad") + "\n";
+                    mensaje = mensaje + rset.getString("F_ClaPro") + "\t\t" + rset.getString("F_ClaLot") + "\t\t" + rset.getString("F_FecCad") + "\t\t" + rset.getString("F_CantSur") + "\n";
                 }
                 con.cierraConexion();
             } catch (Exception e) {
