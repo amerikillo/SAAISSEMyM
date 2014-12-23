@@ -5,6 +5,8 @@
  */
 package Facturacion;
 
+import Correo.CorreoGeneraFolio;
+import Correo.CorreoGeneraRemision;
 import conn.*;
 import Inventario.Devoluciones;
 import java.io.IOException;
@@ -292,6 +294,8 @@ public class FacturacionManual extends HttpServlet {
                     }
 
                     con.insertar("insert into tb_obserfact values ('" + FolioFactura + "','" + Observaciones + "',0,'" + request.getParameter("F_Req").toUpperCase() + "')");
+                    CorreoGeneraRemision correo = new CorreoGeneraRemision();
+                    correo.enviaCorreoFolio(FolioFactura + "");
                     //Finaliza
                     //consql.cierraConexion();
                     con.cierraConexion();
@@ -309,11 +313,13 @@ public class FacturacionManual extends HttpServlet {
             }
             if (request.getParameter("accion").equals("ConfirmarFactura")) {
                 try {
+                    CorreoGeneraFolio correo = new CorreoGeneraFolio();
                     con.conectar();
                     RequerimientoModula reqMod = new RequerimientoModula();
                     reqMod.enviaRequerimiento((String) sesion.getAttribute("F_IndGlobal"));
                     con.insertar("update tb_facttemp set F_StsFact = '0' where F_IdFact = '" + (String) sesion.getAttribute("F_IndGlobal") + "' ");
                     con.cierraConexion();
+                    correo.enviaCorreoFolio((String) sesion.getAttribute("F_IndGlobal"));
                     sesion.setAttribute("F_IndGlobal", null);
                     sesion.setAttribute("ClaCliFM", "");
                     sesion.setAttribute("FechaEntFM", "");
@@ -349,7 +355,7 @@ public class FacturacionManual extends HttpServlet {
             if (request.getParameter("accion").equals("btnClave")) {
                 try {
                     String F_IndGlobal = (String) sesion.getAttribute("F_IndGlobal");
-                    int banInsumo=0;
+                    int banInsumo = 0;
                     if (F_IndGlobal == null) {
                         sesion.setAttribute("F_IndGlobal", dameIndGlobal() + "");
                         F_IndGlobal = (String) sesion.getAttribute("F_IndGlobal");
@@ -357,14 +363,14 @@ public class FacturacionManual extends HttpServlet {
                     con.conectar();
                     ResultSet rset = con.consulta("select m.F_ClaPro, m.F_DesPro, l.F_ClaLot, l.F_FolLot, DATE_FORMAT(l.F_FecCad, '%d/%m/%Y') from tb_medica m, tb_lote l where m.F_ClaPro = l.F_ClaPro and m.F_ClaPro = '" + request.getParameter("ClaPro") + "' group by m.F_ClaPro;");
                     while (rset.next()) {
-                        banInsumo=1;
+                        banInsumo = 1;
                         sesion.setAttribute("DesProFM", rset.getString(2));
                     }
                     con.cierraConexion();
                     sesion.setAttribute("ClaCliFM", request.getParameter("ClaCli"));
                     sesion.setAttribute("FechaEntFM", request.getParameter("FechaEnt"));
                     sesion.setAttribute("ClaProFM", request.getParameter("ClaPro"));
-                    if(banInsumo==0){
+                    if (banInsumo == 0) {
                         out.println("<script>alert('Insumo sin Existencias')</script>");
                     }
                     out.println("<script>window.location='facturacionManual.jsp'</script>");

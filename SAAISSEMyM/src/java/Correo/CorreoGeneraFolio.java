@@ -56,27 +56,17 @@ public class CorreoGeneraFolio {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress("vicente.flores@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo
             //message.addRecipient(Message.RecipientType.TO,new InternetAddress("javier.calero@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo
             //message.addRecipient(Message.RecipientType.TO,new InternetAddress("mario.garcia@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo
-            //message.addRecipient(Message.RecipientType.TO,new InternetAddress("joseluis.chavez@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo
+            //message.addRecipient(Message.RecipientType.TO,new InternetAddress("joseluis.chavez@gnkl.mx"));//Aqui se pone la direccion a donde se enviara el correo*/
             message.setSubject("Generación de Folio / GNK Logística");
             System.out.println("Generación de Folio / GNK Logística");
             String mensaje = "Folio Nuevo\nSe acaba de generar el siguiente folio para remisión: " + folio + "\n";
-            try{
-                obj.conectar();
-                ResultSet rset = obj.consulta("select p.F_FecSur, p.F_HorSur, pro.F_NomPro, u.F_Usuario from tb_pedidoisem p, tb_proveedor pro, tb_usuariosisem u where u.F_IdUsu = p.F_IdUsu and p.F_Provee = pro.F_ClaProve and  F_NoCompra = '" + folio + "' group by pro.F_NomPro ");
-                while (rset.next()) {
-                    mensaje = mensaje + "Proveedor: " + rset.getString(3) + "\n"
-                            + "Fecha de Entrega: " + rset.getString(1) + " " + rset.getString(2) + "\n"
-                            + "Orden capurada por: " + rset.getString(4) + "\n";
-                }
-                obj.cierraConexion();
-            } catch (Exception e) {
-            }
-            mensaje = mensaje + "Clave\t\t\tCantidad\n";
+
+            mensaje = mensaje + "Clave\t\t\tLote\t\t\tCaducidad\t\t\tCantidad\n";
             try {
                 obj.conectar();
-                ResultSet rset = obj.consulta("select F_Clave, F_Cant, F_Obser from tb_pedidoisem where F_NoCompra = '" + folio + "' ");
+                ResultSet rset = obj.consulta("select F_ClaPro, F_ClaLot, F_FecCad, F_Cant from clavefact where F_IdFact ='" + folio + "' ");
                 while (rset.next()) {
-                    mensaje = mensaje + rset.getString(1) + "\t\t" + rset.getString(2) + "\t\t" + rset.getString(3) + "\n";
+                    mensaje = mensaje + rset.getString(1) + "\t\t\t" + rset.getString(2) + "\t\t\t" + rset.getString(3) + "\t\t\t" + rset.getString(4) + "\n";
                 }
                 obj.cierraConexion();
             } catch (Exception e) {
