@@ -59,7 +59,7 @@
         <div class="container">
             <h1>SIALSS</h1>
             <h4>SISTEMA INTEGRAL DE ADMINISTRACIÓN Y LOGÍSTICA PARA SERVICIOS DE SALUD</h4>
-            
+
             <%@include file="../jspf/menuPrincipal.jspf" %>
 
             <div>
@@ -113,7 +113,7 @@
                                     <td>
                                         <form action="Facturacion" method="post">
                                             <%
-                                                if (usua.equals("esteban")) {
+                                                if (usua.equals("elideth")) {
                                             %>
                                             <input class="hidden" name="fol_gnkl" value="<%=rset.getString("F_IdFact")%>">
                                             <button class="btn btn-block btn-danger" name="accion" value="EliminaConcentrado" onclick="return confirm('Seguro de eliminar este concentrado?')"><span class="glyphicon glyphicon-remove"></span></button>
@@ -126,7 +126,7 @@
                                         <form action="FacturacionManual" method="post">
                                             <input class="hidden" name="fol_gnkl" value="<%=rset.getString("F_IdFact")%>">
                                             <button class="btn btn-block btn-info" name="accion" value="ReenviarFactura" onclick="return confirm('Seguro de Reenviar este concentrado?')"><span class="glyphicon glyphicon-upload"></span></button>
-                   
+
                                         </form>
                                     </td>
                                 </tr>
@@ -144,6 +144,52 @@
                         </table>
                     </div>
                 </div>
+
+                <h4>Folios Cancelados</h4>
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <table class="table table-bordered table-striped" id="datosCompras">
+                            <thead>
+                                <tr>
+                                    <td>No. Folio</td>
+                                    <td>Punto de entrega</td>
+                                    <td>Orden de Compra</td>
+                                    <td>Excel</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                    try {
+                                        con.conectar();
+                                        try {
+                                            ResultSet rset = con.consulta("SELECT u.F_NomCli, DATE_FORMAT(f.F_FecEnt, '%d/%m/%Y') as FecEnt, l.F_ClaPro,	l.F_ClaLot,	DATE_FORMAT(l.F_FecCad, '%d/%m/%Y'),	(f.F_Cant+0) as F_Cant,	l.F_Ubica,	f.F_IdFact,	l.F_Cb,	p.F_Pzs,	(f.F_Cant DIV p.F_Pzs),	(f.F_Cant MOD p.F_Pzs) FROM	tb_facttemp_elim f,	tb_lote l,	tb_uniatn u,	tb_pzxcaja p WHERE	f.F_IdLot = l.F_IdLote AND f.F_ClaCli = u.F_ClaCli AND p.F_ClaPro = l.F_ClaPro GROUP BY f.F_IdFact;");
+                                            while (rset.next()) {
+                                %>
+                                <tr>
+
+                                    <td><%=rset.getString("F_IdFact")%></td>
+                                    <td><%=rset.getString("F_NomCli")%></td>
+                                    <td><%=rset.getString("FecEnt")%></td>
+                                    <td>
+                                        <a class="btn btn-block btn-primary" href="gnrConcentradoElim.jsp?fol_gnkl=<%=rset.getString("F_IdFact")%>" target="_blank">Descargar</a>
+                                    </td>
+                                </tr>
+                                <%
+                                            }
+                                        } catch (Exception e) {
+
+                                        }
+                                        con.cierraConexion();
+                                    } catch (Exception e) {
+
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
             </div>
         </div>
         <%@include file="../jspf/piePagina.jspf" %>

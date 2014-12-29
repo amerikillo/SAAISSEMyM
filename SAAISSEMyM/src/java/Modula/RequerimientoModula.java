@@ -26,7 +26,7 @@ public class RequerimientoModula {
             try {
                 conModula.ejecutar("delete from IMP_ORDINI_RIGHE where RIG_ORDINE='" + F_IdFact + "'");
                 conModula.ejecutar("delete from IMP_ORDINI where ORD_ORDINE='" + F_IdFact + "'");
-                ResultSet rset = con.consulta("select F_ClaCli, F_FecEnt, F_IdFact from v_folioremisiones where F_IdFact = '" + F_IdFact + "' group by F_IdFact");
+                ResultSet rset = con.consulta("select F_ClaCli, F_FecEnt, F_IdFact from v_folioremisiones where F_IdFact = '" + F_IdFact + "' and F_Ubica='MODULA' group by F_IdFact");
                 while (rset.next()) {
                     conModula.ejecutar("insert into IMP_ORDINI values ('" + rset.getString("F_IdFact") + "','A','','" + df4.format(df3.parse(rset.getString("F_FecEnt"))) + "','P','" + rset.getString("F_ClaCli") + "','1')");
                 }
