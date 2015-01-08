@@ -164,7 +164,7 @@
                 <%
                     try {
                         con.conectar();
-                        ResultSet rset = con.consulta("select l.F_ClaPro, l.F_ClaLot, DATE_FORMAT(l.F_FecCad, '%d/%m/%Y'), l.F_Ubica, l.F_ExiLot, l.F_IdLote, l.F_FolLot, m.F_DesMar, me.F_ClaSap from tb_lote l, tb_marca m, tb_medica me where me.F_ClaPro = l.F_ClaPro and l.F_ClaMar = m.F_ClaMar and l.F_ClaPro = '" + ClaPro + "' and F_ExiLot!=0 order by F_FecCad asc  ");
+                        ResultSet rset = con.consulta("select l.F_ClaPro, l.F_ClaLot, DATE_FORMAT(l.F_FecCad, '%d/%m/%Y'), l.F_Ubica, l.F_ExiLot, l.F_IdLote, l.F_FolLot, m.F_DesMar, me.F_ClaSap from tb_lote l, tb_marca m, tb_medica me where me.F_ClaPro = l.F_ClaPro and l.F_ClaMar = m.F_ClaMar and l.F_ClaPro = '" + ClaPro + "' and F_ExiLot!=0 AND l.F_Ubica != 'DEVOLUCION'  order by F_FecCad asc  ");
                         while (rset.next()) {
                             int cant = 0, cantTemp = 0;
                             int cantLot = rset.getInt(5);
