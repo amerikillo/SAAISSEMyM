@@ -111,7 +111,7 @@
                                         <a class="btn btn-block btn-primary" href="gnrConcentrado.jsp?fol_gnkl=<%=rset.getString("F_IdFact")%>" target="_blank">Descargar</a>
                                     </td>
                                     <td>
-                                        <form action="Facturacion" method="post">
+                                        <form action="facturacion" method="post">
                                             <%
                                                 if (usua.equals("elideth")) {
                                             %>

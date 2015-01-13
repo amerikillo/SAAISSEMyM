@@ -178,7 +178,7 @@
                     %>
                 </div>
                 <div class="panel-footer">
-                    <form action="Facturacion" method="post">
+                    <form action="facturacion" method="post">
                         <input class="hidden" name="Nombre" value="<%=Clave%>" />
                         <div class="table-responsive">
                             <table class="table table-bordered table-condensed table-striped">
@@ -223,7 +223,7 @@
                                                 <a href="#" class="btn btn-warning btn-block" data-toggle="modal" data-target="#Rechazar<%=rset.getString("F_Id")%>"><span class="glyphicon glyphicon-barcode"></span></a>
                                             </div>
                                             <div class="col-sm-4">
-                                                <a class="btn btn-block btn-success" onclick="return confirm('Desea Validar Esta Clave?')" href="Facturacion?accion=validaRegistro&folio=<%=rset.getString("F_Id")%>&Nombre=<%=Clave%>"><span class="glyphicon glyphicon-ok"></span></a>
+                                                <a class="btn btn-block btn-success" onclick="return confirm('Desea Validar Esta Clave?')" href="facturacion?accion=validaRegistro&folio=<%=rset.getString("F_Id")%>&Nombre=<%=Clave%>"><span class="glyphicon glyphicon-ok"></span></a>
                                             </div>
                                             <div class="col-sm-4 checkbox">
                                                 <input type="checkbox" name="chkId" value="<%=rset.getString("F_Id")%>">

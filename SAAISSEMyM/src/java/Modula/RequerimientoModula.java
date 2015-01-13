@@ -30,7 +30,7 @@ public class RequerimientoModula {
                 while (rset.next()) {
                     conModula.ejecutar("insert into IMP_ORDINI values ('" + rset.getString("F_IdFact") + "','A','','" + df4.format(df3.parse(rset.getString("F_FecEnt"))) + "','P','" + rset.getString("F_ClaCli") + "','1')");
                 }
-                rset = con.consulta("select F_ClaCli, F_FecEnt, F_IdFact, F_ClaPro, F_ClaLot, F_FecCad, F_Cb, F_Cant, F_Id from v_folioremisiones where F_IdFact = '" + F_IdFact + "'");
+                rset = con.consulta("select F_ClaCli, F_FecEnt, F_IdFact, F_ClaPro, F_ClaLot, F_FecCad, F_Cb, F_Cant, F_Id from v_folioremisiones where F_IdFact = '" + F_IdFact + "' and F_Ubica='MODULA'");
                 while (rset.next()) {
                     /*
                      * La 'A' es de inserción
